@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.css';
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+#root, .ant-layout {
+    height: 100%;
+}
+.logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
+}
