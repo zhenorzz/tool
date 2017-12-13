@@ -12,7 +12,7 @@ class FolderContent extends Component {
                         <Icon type="upload" /> 选择要上传的文件
                     </Button>
                 </Upload>
-                <Button icon="folder" style={{ marginRight: 8 }}>
+                <Button icon="folder-add" style={{ marginRight: 8 }}>
                    新建文件夹
                 </Button>
                 <ButtonGroup style={{ marginRight: 8 }}>
