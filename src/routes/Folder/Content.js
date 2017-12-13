@@ -1,28 +1,91 @@
 import React, {Component} from 'react';
-import {Upload, Icon, Divider, Button } from 'antd';
+import {Upload, Icon, Divider, Button, Row, Col} from 'antd';
+import axios from 'axios';
+
 const ButtonGroup = Button.Group;
+
 class FolderContent extends Component {
+    constructor(pros) {
+        super(pros);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    state = {file: [], dir: []};
+
+    componentDidMount() {
+        axios.get('http://localhost:13711/index/Index/read', {params: {path: ''}})
+            .then((response) => {
+                let data = JSON.parse(response.request.response);
+                let file = data.file;
+                let dir = data.dir;
+                this.setState({
+                    file: file,
+                    dir: dir,
+                });
+            })
+    }
+
+    handleClick = (event) => {
+        axios.post('http://localhost:13711/index/Index/read', {params: {path: ''}})
+            .then((response) => {
+                let data = JSON.parse(response.request.response);
+                let file = data.file;
+                let dir = data.dir;
+                this.setState({
+                    file: file,
+                    dir: dir,
+                });
+            })
+    }
+
     render() {
         return (
             <div>
                 <section id="button-section">
-                <Button style={{ marginRight: 8 }}>根目录</Button>
-                <Upload name="logo" listType="picture" className="inline-block" style={{ marginRight: 8 }}>
-                    <Button>
-                        <Icon type="upload" /> 选择要上传的文件
+                    <Button style={{marginRight: 8}} onClick={this.handleClick}>根目录</Button>
+                    <Upload name="logo" listType="picture" className="inline-block" style={{marginRight: 8}}>
+                        <Button>
+                            <Icon type="upload"/> 选择要上传的文件
+                        </Button>
+                    </Upload>
+                    <Button icon="folder-add" style={{marginRight: 8}}>
+                        新建文件夹
                     </Button>
-                </Upload>
-                <Button icon="folder-add" style={{ marginRight: 8 }}>
-                   新建文件夹
-                </Button>
-                <ButtonGroup style={{ marginRight: 8 }}>
-                    <Button icon="download" />
-                    <Button icon="qrcode" />
-                    <Button icon="eye" />
-                    <Button icon="delete" />
-                </ButtonGroup>
+                    <ButtonGroup style={{marginRight: 8}}>
+                        <Button icon="download"/>
+                        <Button icon="qrcode"/>
+                        <Button icon="eye"/>
+                        <Button icon="delete"/>
+                    </ButtonGroup>
                 </section>
-                <Divider />
+                <Divider/>
+                <Row>
+                    {
+                        this.state.file.map((item, index) => {
+                            return (
+                                <Col xs={6} sm={6} md={4} lg={3} key={index}>
+                                    <div style={{textAlign: 'center'}}>
+                                        <img alt={item} src={require('../../assets/images/folder.png')}/>
+                                        <div>{item}</div>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
+                    {
+                        this.state.dir.map((item, index) => {
+                            return (
+                                <Col xs={6} sm={6} md={4} lg={3} key={index}>
+                                    <div style={{textAlign: 'center'}}>
+                                        <img alt={item} src={require('../../assets/images/folder.png')}/>
+                                        <div>{item}</div>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
+
+                </Row>
             </div>
         );
     }

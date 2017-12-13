@@ -7,14 +7,6 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Router extends Component {
-    state = {
-        collapsed: false,
-    };
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    }
     handleClick = (e) => {
         console.log('click ', e);
     }
@@ -24,10 +16,8 @@ class Router extends Component {
             <BrowserRouter>
                 <Layout>
                     <Sider
-                        trigger={null}
                         collapsedWidth="0"
                         breakpoint="lg"
-                        collapsed={this.state.collapsed}
                         width="260"
                     >
                         <div className="logo"/>
@@ -45,13 +35,7 @@ class Router extends Component {
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Header style={{background: '#fff', padding: 0}} id="ant">
-                            <Icon
-                                className="trigger"
-                                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                                onClick={this.toggle}
-                            />
-                        </Header>
+                        <Header style={{background: '#fff', padding: 0}} id="ant" />
                         <Content style={{margin: '24px 16px 0'}}>
                             <div style={{padding: 24, background: '#fff', minHeight: 360}}>
                                 <Route exact path="/" component={Folder}/>
