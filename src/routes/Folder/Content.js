@@ -61,11 +61,11 @@ class FolderContent extends Component {
                 <Divider/>
                 <Row>
                     {
-                        this.state.file.map((item, index) => {
+                        this.state.dir.map((item, index) => {
                             return (
-                                <Col xs={6} sm={6} md={4} lg={3} key={index}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
                                     <div style={{textAlign: 'center'}}>
-                                        <img alt={item} src={require('../../assets/images/folder.png')}/>
+                                        <img alt={item} width="64" src={require('../../assets/images/folder.png')}/>
                                         <div>{item}</div>
                                     </div>
                                 </Col>
@@ -73,18 +73,31 @@ class FolderContent extends Component {
                         })
                     }
                     {
-                        this.state.dir.map((item, index) => {
+                        this.state.file.map((item, index) => {
+                            let suffix = item.substr(item.lastIndexOf(".") + 1);
+                            switch (suffix) {
+                                case 'txt':
+                                    break;
+                                case 'html':
+                                    break;
+                                case 'md':
+                                    suffix = 'markdown';
+                                    break;
+                                case 'pdf':
+                                    break;
+                                default:
+                                    suffix = 'unknown';
+                            }
                             return (
-                                <Col xs={6} sm={6} md={4} lg={3} key={index}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
                                     <div style={{textAlign: 'center'}}>
-                                        <img alt={item} src={require('../../assets/images/folder.png')}/>
+                                        <img alt={item} width="64" src={require('../../assets/images/'+suffix+'.png')}/>
                                         <div>{item}</div>
                                     </div>
                                 </Col>
                             )
                         })
                     }
-
                 </Row>
             </div>
         );
