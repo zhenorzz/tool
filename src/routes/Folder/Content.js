@@ -2,18 +2,15 @@ import React, {Component} from 'react';
 import {Upload, Icon, Divider, Button, Row, Col} from 'antd';
 import axios from 'axios';
 
-const ButtonGroup = Button.Group;
-
 class FolderContent extends Component {
     constructor(pros) {
         super(pros);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     state = {file: [], dir: []};
 
     componentDidMount() {
-        axios.get('http://localhost:13711/index/Index/read', {params: {path: ''}})
+        axios.get('http://localhost:6324/index/Index/read', {params: {path: ''}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
@@ -26,7 +23,7 @@ class FolderContent extends Component {
     }
 
     handleClick = (event) => {
-        axios.post('http://localhost:13711/index/Index/read', {params: {path: ''}})
+        axios.get('http://localhost:6324/index/Index/read', {params: {path: ''}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
@@ -38,7 +35,12 @@ class FolderContent extends Component {
             })
     }
 
+    dirClick(index) {
+        console.log(index);
+    }
+
     render() {
+        const ButtonGroup = Button.Group;
         return (
             <div>
                 <section id="button-section">
@@ -63,7 +65,7 @@ class FolderContent extends Component {
                     {
                         this.state.dir.map((item, index) => {
                             return (
-                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index} onClick={this.dirClick.bind(this, item)}>
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64" src={require('../../assets/images/folder.png')}/>
                                         <div>{item}</div>
