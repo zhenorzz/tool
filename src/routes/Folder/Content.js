@@ -8,7 +8,7 @@ class FolderContent extends Component {
         this.handleFileChange = this.handleFileChange.bind(this)
     }
 
-    state = {file: [], dir: [], folder: ['根目录']};
+    state = {file: [], dir: [], folder: ['根目录'],fileList:[]};
 
     componentDidMount() {
         axios.get('http://localhost:6324/index/Index/read', {params: {path: ''}})
@@ -70,14 +70,38 @@ class FolderContent extends Component {
     handleFileChange(info) {
         let files = this.state.file;
         let fileList = info.fileList;
-        fileList.map((file) => {
+        let tempList = info.fileList;
+        // 1. Limit the number of uploaded files
+        //    Only to show two recent uploaded files, and old ones will be replaced by the new
+        fileList = fileList.slice(-2);
+
+        // 2. read from response and show file link
+        fileList = fileList.map((file) => {
+            if (file.response) {
+                // Component will show file.url as link
+                file.url = file.response.url;
+            }
+            return file;
+        });
+
+        // 3. filter successfully uploaded files according to response from server
+        fileList = fileList.filter((file) => {
+            if (file.response) {
+                return file.response.status === 'success';
+            }
+            return true;
+        });
+
+        tempList.map((file) => {
             if (file.status === 'done') {
                 files.includes(file.name) || files.push(file.name)
             }
             return true;
         });
+
         this.setState({
             file: files,
+            fileList: fileList
         });
     }
 
@@ -92,6 +116,7 @@ class FolderContent extends Component {
             action: 'http://localhost:6324/index/Index/upload?path=' + path,
             multiple: true,
             onChange: this.handleFileChange,
+            name: 'file',
         };
         return (
             <div>
@@ -107,7 +132,7 @@ class FolderContent extends Component {
                         }
                     </ButtonGroup>
 
-                    <Upload name="file" {...props} className="inline-block" style={{marginRight: 8}}>
+                    <Upload {...props} fileList={this.state.fileList} className="inline-block" style={{marginRight: 8}}>
                         <Button>
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
