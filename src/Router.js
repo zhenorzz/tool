@@ -7,14 +7,6 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Router extends Component {
-    state = {
-        collapsed: false,
-    };
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    }
     handleClick = (e) => {
         console.log('click ', e);
     }
@@ -26,7 +18,6 @@ class Router extends Component {
                     <Sider
                         collapsedWidth="0"
                         breakpoint="lg"
-                        onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
                         width="260"
                     >
                         <div className="logo"/>

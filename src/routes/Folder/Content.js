@@ -5,28 +5,37 @@ import axios from 'axios';
 const ButtonGroup = Button.Group;
 
 class FolderContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {file: [], dir: []};
+    constructor(pros) {
+        super(pros);
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick = (e) => {
-        let me = this;
-        axios.get('http://192.168.3.65:6324/index/Index/read?path=')
-            .then(function (response) {
+    state = {file: [], dir: []};
+
+    componentDidMount() {
+        axios.get('http://localhost:13711/index/Index/read', {params: {path: ''}})
+            .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
                 let dir = data.dir;
-                me.setState({
+                this.setState({
                     file: file,
                     dir: dir,
                 });
-                console.log(JSON.parse(response.request.response));
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+    }
+
+    handleClick = (event) => {
+        axios.post('http://localhost:13711/index/Index/read', {params: {path: ''}})
+            .then((response) => {
+                let data = JSON.parse(response.request.response);
+                let file = data.file;
+                let dir = data.dir;
+                this.setState({
+                    file: file,
+                    dir: dir,
+                });
+            })
     }
 
     render() {
@@ -50,44 +59,46 @@ class FolderContent extends Component {
                     </ButtonGroup>
                 </section>
                 <Divider/>
-                <div>
-                    <Row>
-                        {
-                            this.state.dir.map((item, index) => {
-                                return (
-                                    <Col xs={6} sm={6} md={4} lg={2}>
-                                        <div style={{cursor: "pointer"}}>
-                                            <img alt="example" style={{width: '100%'}}
-                                                 src={require('../../assets/images/folder.png')}/>
-                                            <div style={{textAlign: 'center'}}> {item}</div>
-                                        </div>
-                                    </Col>
-                                )
-                            })
-                        }
-                        {
-                            this.state.file.map((item, index) => {
-                                return (
-                                    <Col xs={6} sm={6} md={4} lg={2} key={index}>
-                                        <div style={{cursor: "pointer"}}>
-                                            <img alt="example" style={{width: '100%'}}
-                                                 src={require('../../assets/images/folder.png')}/>
-                                            <div style={{textAlign: 'center'}}> {item}</div>
-                                        </div>
-                                    </Col>
-                                )
-                            })
-                        }
-
-                        {/*<Col xs={6} sm={6} md={4} lg={2}>*/}
-                            {/*<div style={{cursor: "pointer"}}>*/}
-                                {/*<img alt="example" style={{width: '100%'}}*/}
-                                     {/*src={require('../../assets/images/folder.png')}/>*/}
-                                {/*<div style={{textAlign: 'center'}}> qrmaster</div>*/}
-                            {/*</div>*/}
-                        {/*</Col>*/}
-                    </Row>
-                </div>
+                <Row>
+                    {
+                        this.state.dir.map((item, index) => {
+                            return (
+                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
+                                    <div style={{textAlign: 'center'}}>
+                                        <img alt={item} width="64" src={require('../../assets/images/folder.png')}/>
+                                        <div>{item}</div>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
+                    {
+                        this.state.file.map((item, index) => {
+                            let suffix = item.substr(item.lastIndexOf(".") + 1);
+                            switch (suffix) {
+                                case 'txt':
+                                    break;
+                                case 'html':
+                                    break;
+                                case 'md':
+                                    suffix = 'markdown';
+                                    break;
+                                case 'pdf':
+                                    break;
+                                default:
+                                    suffix = 'unknown';
+                            }
+                            return (
+                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
+                                    <div style={{textAlign: 'center'}}>
+                                        <img alt={item} width="64" src={require('../../assets/images/'+suffix+'.png')}/>
+                                        <div>{item}</div>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
+                </Row>
             </div>
         );
     }
