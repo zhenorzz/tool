@@ -5,6 +5,7 @@ import axios from 'axios';
 class FolderContent extends Component {
     constructor(pros) {
         super(pros);
+        this.handleFileChange = this.handleFileChange.bind(this)
     }
 
     state = {file: [], dir: [], folder: ['根目录']};
@@ -66,8 +67,32 @@ class FolderContent extends Component {
             })
     }
 
+    handleFileChange(info) {
+        let files = this.state.file;
+        let fileList = info.fileList;
+        fileList.map((file) => {
+            if (file.status === 'done') {
+                files.includes(file.name) || files.push(file.name)
+            }
+            return true;
+        });
+        this.setState({
+            file: files,
+        });
+    }
+
     render() {
         const ButtonGroup = Button.Group;
+        let folders = this.state.folder;
+        let path = '';
+        for (let i = 1; i < folders.length; i++) {
+            path += folders[i] + '/'
+        }
+        const props = {
+            action: 'http://localhost:6324/index/Index/upload?path=' + path,
+            multiple: true,
+            onChange: this.handleFileChange,
+        };
         return (
             <div>
                 <section id="button-section">
@@ -82,7 +107,7 @@ class FolderContent extends Component {
                         }
                     </ButtonGroup>
 
-                    <Upload name="logo" listType="picture" className="inline-block" style={{marginRight: 8}}>
+                    <Upload name="file" {...props} className="inline-block" style={{marginRight: 8}}>
                         <Button>
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
