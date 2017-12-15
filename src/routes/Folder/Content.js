@@ -152,7 +152,7 @@ class FolderContent extends Component {
                     {
                         this.state.dir.map((item, index) => {
                             return (
-                                <Col xs={12} sm={6} md={4} lg={2} key={index} onClick={this.dirClick.bind(this, item)}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor:'pointer'}} onClick={this.dirClick.bind(this, item)}>
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64" src={require('../../assets/images/folder.png')}/>
                                         <div>{item}</div>
@@ -178,7 +178,7 @@ class FolderContent extends Component {
                                     suffix = 'unknown';
                             }
                             return (
-                                <Col xs={12} sm={6} md={4} lg={2} key={index}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor:'pointer'}}>
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64"
                                              src={require('../../assets/images/' + suffix + '.png')}/>
