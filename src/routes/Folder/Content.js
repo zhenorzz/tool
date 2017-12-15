@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
-import {Upload, Icon, Divider, Button, Row, Col} from 'antd';
+import {Upload, Icon, Divider, Button, Row, Col, Modal, Input} from 'antd';
 import axios from 'axios';
 
 class FolderContent extends Component {
     constructor(pros) {
         super(pros);
-        this.handleFileChange = this.handleFileChange.bind(this)
+        this.handleFileChange = this.handleFileChange.bind(this);
+        this.cleanFileButton = this.cleanFileButton.bind(this);
     }
 
-    state = {file: [], dir: [], folder: ['根目录'],fileList:[]};
+    state = {
+        file: [],
+        dir: [],
+        folder: ['根目录'],
+        fileList: [],
+        fileClick: false,
+        fileIndex: -1,
+        loading: false,
+        visible: false,
+    };
 
     componentDidMount() {
+        document.onclick = this.cleanFileButton;
         axios.get('http://localhost:6324/index/Index/read', {params: {path: ''}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
@@ -23,7 +34,14 @@ class FolderContent extends Component {
             })
     }
 
-    handleClick(item, index, event) {
+    cleanFileButton() {
+        this.setState({
+            fileClick: false,
+            fileIndex: -1,
+        });
+    }
+
+    handleDirClick(item, index, event) {
         let folders = this.state.folder;
         folders = folders.slice(0, index + 1);
         this.setState({
@@ -45,7 +63,15 @@ class FolderContent extends Component {
             })
     }
 
-    dirClick(item) {
+    handleFileClick(item, index, e) {
+        e.nativeEvent.stopImmediatePropagation();
+        this.setState({
+            fileClick: true,
+            fileIndex: index,
+        });
+    }
+
+    handleFolderClick(item) {
         let folders = this.state.folder;
         folders.push(item);
         this.setState({
@@ -104,7 +130,20 @@ class FolderContent extends Component {
             fileList: fileList
         });
     }
-
+    handleOk = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
+    handleCancel = () => {
+        this.setState({ visible: false });
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
     render() {
         const ButtonGroup = Button.Group;
         let folders = this.state.folder;
@@ -126,7 +165,7 @@ class FolderContent extends Component {
                             this.state.folder.map((item, index) => {
                                 return (
                                     <Button key={index}
-                                            onClick={this.handleClick.bind(this, item, index)}>{item}</Button>
+                                            onClick={this.handleDirClick.bind(this, item, index)}>{item}</Button>
                                 )
                             })
                         }
@@ -137,22 +176,40 @@ class FolderContent extends Component {
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
                     </Upload>
-                    <Button icon="folder-add" style={{marginRight: 8}}>
+                    <Button icon="folder-add" style={{marginRight: 8}}  onClick={this.showModal}>
                         新建文件夹
                     </Button>
+                    <Modal
+                        visible={this.state.visible}
+                        title="Title"
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                        footer={[
+                            <span key="info" style={{color:'red',fontSize:'12px',marginRight:'10px'}}>文件名字错误</span>,
+                            <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                            <Button key="submit" type="primary" loading={this.state.loading} onClick={this.handleOk}>
+                                Submit
+                            </Button>,
+                        ]}
+                    >
+                        <Input placeholder="default size" />
+                    </Modal>
+                    {this.state.fileClick &&
                     <ButtonGroup style={{marginRight: 8}}>
                         <Button icon="download"/>
                         <Button icon="qrcode"/>
                         <Button icon="eye"/>
                         <Button icon="delete"/>
                     </ButtonGroup>
+                    }
                 </section>
                 <Divider/>
                 <Row>
                     {
                         this.state.dir.map((item, index) => {
                             return (
-                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor:'pointer'}} onClick={this.dirClick.bind(this, item)}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor: 'pointer'}}
+                                     onClick={this.handleFolderClick.bind(this, item)}>
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64" src={require('../../assets/images/folder.png')}/>
                                         <div>{item}</div>
@@ -178,11 +235,12 @@ class FolderContent extends Component {
                                     suffix = 'unknown';
                             }
                             return (
-                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor:'pointer'}}>
+                                <Col xs={12} sm={6} md={4} lg={2} key={index} style={{cursor: 'pointer'}}
+                                     onClick={this.handleFileClick.bind(this, item, index)}>
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64"
                                              src={require('../../assets/images/' + suffix + '.png')}/>
-                                        <div>{item}</div>
+                                        <div style={{color:this.state.fileIndex === index ? '#40a9ff' : 'rgba(0, 0, 0, 0.65)'}}>{item}</div>
                                     </div>
                                 </Col>
                             )
