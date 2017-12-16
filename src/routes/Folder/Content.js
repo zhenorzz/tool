@@ -18,11 +18,13 @@ class FolderContent extends Component {
         fileIndex: -1,
         loading: false,
         visible: false,
+        createErrorMsg: '',
+        createFileName: '',
     };
 
     componentDidMount() {
         document.onclick = this.cleanFileButton;
-        axios.get('http://localhost:6324/index/Index/read', {params: {path: ''}})
+        axios.get('/index/Index/read', {params: {path: ''}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
@@ -33,14 +35,14 @@ class FolderContent extends Component {
                 });
             })
     }
-
+    //清除文件按钮
     cleanFileButton() {
         this.setState({
             fileClick: false,
             fileIndex: -1,
         });
     }
-
+    //点击目录
     handleDirClick(item, index, event) {
         let folders = this.state.folder;
         folders = folders.slice(0, index + 1);
@@ -51,7 +53,7 @@ class FolderContent extends Component {
         for (let i = 1; i < folders.length; i++) {
             path += folders[i] + '/'
         }
-        axios.get('http://localhost:6324/index/Index/read', {params: {path: path}})
+        axios.get('/index/Index/read', {params: {path: path}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
@@ -62,7 +64,7 @@ class FolderContent extends Component {
                 });
             })
     }
-
+    //点击文件
     handleFileClick(item, index, e) {
         e.nativeEvent.stopImmediatePropagation();
         this.setState({
@@ -70,7 +72,7 @@ class FolderContent extends Component {
             fileIndex: index,
         });
     }
-
+    //点击目录导航
     handleFolderClick(item) {
         let folders = this.state.folder;
         folders.push(item);
@@ -81,7 +83,7 @@ class FolderContent extends Component {
         for (let i = 1; i < folders.length; i++) {
             path += folders[i] + '/'
         }
-        axios.get('http://localhost:6324/index/Index/read', {params: {path: path}})
+        axios.get('/index/Index/read', {params: {path: path}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
                 let file = data.file;
@@ -92,7 +94,7 @@ class FolderContent extends Component {
                 });
             })
     }
-
+    //上传文件
     handleFileChange(info) {
         let files = this.state.file;
         let fileList = info.fileList;
@@ -130,20 +132,61 @@ class FolderContent extends Component {
             fileList: fileList
         });
     }
+    //创建文件夹开始
     handleOk = () => {
-        this.setState({ loading: true });
-        setTimeout(() => {
-            this.setState({ loading: false, visible: false });
-        }, 3000);
+        if (this.state.createFileName.trim() === '') {
+            this.setState({
+                createErrorMsg: '文件夹名字不能为空',
+                createFileName: '',
+            });
+        } else {
+            this.setState({loading: true});
+            let folders = this.state.folder;
+            let path = '';
+            for (let i = 1; i < folders.length; i++) {
+                path += folders[i] + '/'
+            }
+            axios.post('/index/Index/create', {
+                dir: path,
+                name: this.state.createFileName
+            })
+                .then((response) => {
+                    let result = JSON.parse(response.request.response);
+                    if (result.hasOwnProperty('createResult') && result.createResult === true) {
+                        let dirs = this.state.dir;
+                        dirs.push(this.state.createFileName);
+                        this.setState({
+                            loading: false,
+                            visible: false,
+                            dir: dirs,
+                            createFileName: '',
+                            createErrorMsg: '',
+                        });
+                    } else {
+                        this.setState({
+                            loading: false,
+                            createErrorMsg: result.errorMsg,
+                        });
+                    }
+
+                })
+                .catch(() => {
+                    this.setState({loading: false, visible: false});
+                })
+        }
     }
     handleCancel = () => {
-        this.setState({ visible: false });
+        this.setState({visible: false});
     }
     showModal = () => {
         this.setState({
             visible: true,
         });
     }
+    createNameChange = (e) => {
+        this.setState({createFileName: e.target.value});
+    }
+    //创建文件夹结束
     render() {
         const ButtonGroup = Button.Group;
         let folders = this.state.folder;
@@ -152,7 +195,7 @@ class FolderContent extends Component {
             path += folders[i] + '/'
         }
         const props = {
-            action: 'http://localhost:6324/index/Index/upload?path=' + path,
+            action: '/index/Index/upload?path=' + path,
             multiple: true,
             onChange: this.handleFileChange,
             name: 'file',
@@ -176,23 +219,28 @@ class FolderContent extends Component {
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
                     </Upload>
-                    <Button icon="folder-add" style={{marginRight: 8}}  onClick={this.showModal}>
+                    <Button icon="folder-add" style={{marginRight: 8}} onClick={this.showModal}>
                         新建文件夹
                     </Button>
                     <Modal
                         visible={this.state.visible}
-                        title="Title"
+                        title="输入文件夹名字"
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                         footer={[
-                            <span key="info" style={{color:'red',fontSize:'12px',marginRight:'10px'}}>文件名字错误</span>,
-                            <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                            <span key="info" style={{
+                                color: 'red',
+                                fontSize: '12px',
+                                marginRight: '10px'
+                            }}>{this.state.createErrorMsg}</span>,
+                            <Button key="back" onClick={this.handleCancel}>返回</Button>,
                             <Button key="submit" type="primary" loading={this.state.loading} onClick={this.handleOk}>
-                                Submit
+                                创建
                             </Button>,
                         ]}
                     >
-                        <Input placeholder="default size" />
+                        <Input placeholder="输入文件夹名字" value={this.state.createFileName}
+                               onChange={this.createNameChange}/>
                     </Modal>
                     {this.state.fileClick &&
                     <ButtonGroup style={{marginRight: 8}}>
@@ -240,7 +288,8 @@ class FolderContent extends Component {
                                     <div style={{textAlign: 'center'}}>
                                         <img alt={item} width="64"
                                              src={require('../../assets/images/' + suffix + '.png')}/>
-                                        <div style={{color:this.state.fileIndex === index ? '#40a9ff' : 'rgba(0, 0, 0, 0.65)'}}>{item}</div>
+                                        <div
+                                            style={{color: this.state.fileIndex === index ? '#40a9ff' : 'rgba(0, 0, 0, 0.65)'}}>{item}</div>
                                     </div>
                                 </Col>
                             )
