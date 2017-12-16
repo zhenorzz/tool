@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Folder from './routes/Folder/Content';
 import {Layout, Menu, Icon} from 'antd';
+import logo from './assets/images/zzz.svg';
 
 const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
@@ -20,7 +21,12 @@ class Router extends Component {
                         breakpoint="lg"
                         width="260"
                     >
-                        <div className="logo"/>
+                        <div className="logo">
+                            <a href="#">
+                                <img src={logo} alt="logo" />
+                                    <h1>Software Kit</h1>
+                            </a>
+                        </div>
                         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']}
                               onClick={this.handleClick}>
                             <Menu.Item key="1">

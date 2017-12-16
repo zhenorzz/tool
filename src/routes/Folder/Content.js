@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Upload, Icon, Divider, Button, Row, Col, Modal, Input} from 'antd';
+import {Upload, Icon, Divider, Button, Row, Col, Modal, Popconfirm, Input, message} from 'antd';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 
@@ -25,6 +25,8 @@ class FolderContent extends Component {
         createFileName: '',
         createQrcodeVisible: false,
         qrcodeValue: '',
+        filePreviewVisible:false,
+        previewContent: '',
     };
 
     //文件夹路径
@@ -227,6 +229,55 @@ class FolderContent extends Component {
         this.setState({createQrcodeVisible: false});
     }
 
+    //删除文件
+    showDeleteConfirm = (e) => {
+        e.nativeEvent.stopImmediatePropagation();
+    }
+    deleteConfirm = (e) => {
+        let fileName = this.state.fileName;
+        axios.delete('/index/Index/delete?file=' + this.path() + fileName)
+            .then((response) => {
+                let result = JSON.parse(response.request.response);
+                if (result.hasOwnProperty('createResult') && result.createResult === true) {
+                    let files = this.state.file;
+                    let index = files.indexOf(fileName);
+                    files.splice(index, 1);
+                    this.setState({
+                        file: files,
+                    });
+                    message.info('删除成功');
+                } else {
+                    message.error('文件不存在，删除失败');
+                }
+            })
+            .catch(() => {
+                message.error('系统错误，删除失败');
+            })
+    }
+
+    //创建二维码
+    showFilePreviewModal = (e) => {
+        e.nativeEvent.stopImmediatePropagation();
+        let fileName = this.state.fileName;
+        axios.delete('/index/Index/preview?file=' + this.path() + fileName)
+            .then((response) => {
+                let html = response.request.response;
+                this.setState({
+                    previewContent: html,
+                });
+
+            })
+            .catch(() => {
+                message.error('系统错误，删除失败');
+            })
+        this.setState({
+            filePreviewVisible: true,
+        });
+    }
+    filePreviewCancel = () => {
+        this.setState({filePreviewVisible: false});
+    }
+
     render() {
         const ButtonGroup = Button.Group;
         let path = this.path();
@@ -283,8 +334,12 @@ class FolderContent extends Component {
                     <ButtonGroup style={{marginRight: 8}}>
                         <Button icon="download" onClick={this.handleDownload}/>
                         <Button icon="qrcode" onClick={this.showCreateQrcodeModal}/>
-                        <Button icon="eye"/>
-                        <Button icon="delete"/>
+                        <Button icon="eye" onClick={this.showFilePreviewModal}/>
+                        <Popconfirm placement="bottom" title="你好" onConfirm={this.deleteConfirm} okText="Yes"
+                                    cancelText="No" onClick={this.showDeleteConfirm}>
+                            <Button icon="delete"/>
+                        </Popconfirm>
+
                     </ButtonGroup>
                     }
                 </section>
@@ -342,6 +397,14 @@ class FolderContent extends Component {
                     <div style={{textAlign: 'center'}}>
                         <QRCode value={this.state.qrcodeValue} size={256} level={'H'}/>
                     </div>
+                </Modal>
+                <Modal
+                    visible={this.state.filePreviewVisible}
+                    title={this.state.fileName}
+                    onCancel={this.filePreviewCancel}
+                    footer={null}
+                >
+                    <div dangerouslySetInnerHTML={{__html:this.state.previewContent}} />
                 </Modal>
             </div>
         );
