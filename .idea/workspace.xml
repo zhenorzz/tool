@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/src/routes/Folder/Content.js" afterPath="$PROJECT_DIR$/src/routes/Folder/Content.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -41,19 +40,21 @@
       <file leaf-file-name="Content.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/Folder/Content.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="256" column="28" lean-forward="false" selection-start-line="256" selection-start-column="28" selection-end-line="256" selection-end-column="28" />
+            <state relative-caret-position="339">
+              <caret line="219" column="44" lean-forward="false" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="44" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+                <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
                 <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
                 <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
                 <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
                 <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
                 <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-                <element signature="e#4039#5591#0" expanded="false" />
-                <element signature="e#5617#5665#0" expanded="false" />
-                <element signature="e#5688#5758#0" expanded="false" />
-                <element signature="e#5789#5853#0" expanded="false" />
+                <element signature="e#4394#4476#0" expanded="false" />
+                <element signature="e#4504#6128#0" expanded="false" />
+                <element signature="e#6160#6220#0" expanded="false" />
+                <element signature="e#6251#6315#0" expanded="false" />
+                <element signature="e#6356#6551#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -141,8 +142,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="231" />
-    <option name="y" value="54" />
+    <option name="x" value="451" />
+    <option name="y" value="50" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -261,7 +262,7 @@
       <workItem from="1513126410234" duration="157000" />
       <workItem from="1513126608706" duration="7047000" />
       <workItem from="1513255454730" duration="5770000" />
-      <workItem from="1513382234726" duration="7611000" />
+      <workItem from="1513382234726" duration="11874000" />
     </task>
     <task id="LOCAL-00001" summary="button">
       <created>1513128956178</created>
@@ -305,14 +306,21 @@
       <option name="project" value="LOCAL" />
       <updated>1513351700643</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="创建文件夹">
+      <created>1513403808416</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1513403808416</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38985000" />
+    <option name="totallyTimeSpent" value="43248000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="231" y="54" width="1400" height="1000" extended-state="0" />
+    <frame x="451" y="50" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49130937" order="0" side_tool="false" content_ui="combo" />
@@ -323,7 +331,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25403818" sideWeight="0.5086906" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32054177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -349,7 +357,8 @@
     <MESSAGE value="图片" />
     <MESSAGE value="文件上传" />
     <MESSAGE value="模态框" />
-    <option name="LAST_COMMIT_MESSAGE" value="模态框" />
+    <MESSAGE value="创建文件夹" />
+    <option name="LAST_COMMIT_MESSAGE" value="创建文件夹" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -380,15 +389,17 @@
           <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -407,15 +418,17 @@
           <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -531,15 +544,17 @@
           <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -574,15 +589,17 @@
           <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -627,15 +644,17 @@
           <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,19 +802,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Folder/Content.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="256" column="28" lean-forward="false" selection-start-line="256" selection-start-column="28" selection-end-line="256" selection-end-column="28" />
+        <state relative-caret-position="339">
+          <caret line="219" column="44" lean-forward="false" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="44" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#cleanFileButton#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-            <element signature="e#4039#5591#0" expanded="false" />
-            <element signature="e#5617#5665#0" expanded="false" />
-            <element signature="e#5688#5758#0" expanded="false" />
-            <element signature="e#5789#5853#0" expanded="false" />
+            <element signature="e#4394#4476#0" expanded="false" />
+            <element signature="e#4504#6128#0" expanded="false" />
+            <element signature="e#6160#6220#0" expanded="false" />
+            <element signature="e#6251#6315#0" expanded="false" />
+            <element signature="e#6356#6551#0" expanded="false" />
           </folding>
         </state>
       </provider>

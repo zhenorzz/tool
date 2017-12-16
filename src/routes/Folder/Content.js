@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Upload, Icon, Divider, Button, Row, Col, Modal, Input} from 'antd';
 import axios from 'axios';
+import QRCode from 'qrcode.react';
 
 class FolderContent extends Component {
     constructor(pros) {
         super(pros);
         this.handleFileChange = this.handleFileChange.bind(this);
         this.cleanFileButton = this.cleanFileButton.bind(this);
+        this.path = this.path.bind(this);
     }
 
     state = {
@@ -16,11 +18,24 @@ class FolderContent extends Component {
         fileList: [],
         fileClick: false,
         fileIndex: -1,
-        loading: false,
-        visible: false,
+        fileName: '',
+        createFolderLoading: false,
+        createFolderVisible: false,
         createErrorMsg: '',
         createFileName: '',
+        createQrcodeVisible: false,
+        qrcodeValue: '',
     };
+
+    //文件夹路径
+    path() {
+        let folders = this.state.folder;
+        let path = '';
+        for (let i = 1; i < folders.length; i++) {
+            path += folders[i] + '/'
+        }
+        return path;
+    }
 
     componentDidMount() {
         document.onclick = this.cleanFileButton;
@@ -35,6 +50,7 @@ class FolderContent extends Component {
                 });
             })
     }
+
     //清除文件按钮
     cleanFileButton() {
         this.setState({
@@ -42,6 +58,7 @@ class FolderContent extends Component {
             fileIndex: -1,
         });
     }
+
     //点击目录
     handleDirClick(item, index, event) {
         let folders = this.state.folder;
@@ -64,14 +81,17 @@ class FolderContent extends Component {
                 });
             })
     }
+
     //点击文件
     handleFileClick(item, index, e) {
         e.nativeEvent.stopImmediatePropagation();
         this.setState({
             fileClick: true,
             fileIndex: index,
+            fileName: item,
         });
     }
+
     //点击目录导航
     handleFolderClick(item) {
         let folders = this.state.folder;
@@ -79,10 +99,7 @@ class FolderContent extends Component {
         this.setState({
             folder: folders,
         });
-        let path = '';
-        for (let i = 1; i < folders.length; i++) {
-            path += folders[i] + '/'
-        }
+        let path = this.path();
         axios.get('/index/Index/read', {params: {path: path}})
             .then((response) => {
                 let data = JSON.parse(response.request.response);
@@ -94,6 +111,7 @@ class FolderContent extends Component {
                 });
             })
     }
+
     //上传文件
     handleFileChange(info) {
         let files = this.state.file;
@@ -132,15 +150,21 @@ class FolderContent extends Component {
             fileList: fileList
         });
     }
-    //创建文件夹开始
-    handleOk = () => {
+
+    //创建文件夹
+    showCreateFolderModal = () => {
+        this.setState({
+            createFolderVisible: true,
+        });
+    }
+    createFolderOk = () => {
         if (this.state.createFileName.trim() === '') {
             this.setState({
                 createErrorMsg: '文件夹名字不能为空',
                 createFileName: '',
             });
         } else {
-            this.setState({loading: true});
+            this.setState({createFolderLoading: true});
             let folders = this.state.folder;
             let path = '';
             for (let i = 1; i < folders.length; i++) {
@@ -156,44 +180,56 @@ class FolderContent extends Component {
                         let dirs = this.state.dir;
                         dirs.push(this.state.createFileName);
                         this.setState({
-                            loading: false,
-                            visible: false,
+                            createFolderLoading: false,
+                            createFolderVisible: false,
                             dir: dirs,
                             createFileName: '',
                             createErrorMsg: '',
                         });
                     } else {
                         this.setState({
-                            loading: false,
+                            createFolderLoading: false,
                             createErrorMsg: result.errorMsg,
                         });
                     }
 
                 })
                 .catch(() => {
-                    this.setState({loading: false, visible: false});
+                    this.setState({createFolderLoading: false, createFolderVisible: false});
                 })
         }
     }
-    handleCancel = () => {
-        this.setState({visible: false});
-    }
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
+    createFolderCancel = () => {
+        this.setState({createFolderVisible: false});
     }
     createNameChange = (e) => {
         this.setState({createFileName: e.target.value});
     }
-    //创建文件夹结束
+
+    //文件下载
+    handleDownload = (e) => {
+        e.nativeEvent.stopImmediatePropagation();
+        let path = this.path();
+        let file = path + this.state.fileName;
+        window.open('/index/Index/download?file=' + file);
+    }
+
+    //创建二维码
+    showCreateQrcodeModal = (e) => {
+        e.nativeEvent.stopImmediatePropagation();
+        let url = 'http://192.168.1.204:3000/index/Index/download?file=' + this.path() + this.state.fileName;
+        this.setState({
+            qrcodeValue: url,
+            createQrcodeVisible: true,
+        });
+    }
+    createQrcodeCancel = () => {
+        this.setState({createQrcodeVisible: false});
+    }
+
     render() {
         const ButtonGroup = Button.Group;
-        let folders = this.state.folder;
-        let path = '';
-        for (let i = 1; i < folders.length; i++) {
-            path += folders[i] + '/'
-        }
+        let path = this.path();
         const props = {
             action: '/index/Index/upload?path=' + path,
             multiple: true,
@@ -219,22 +255,23 @@ class FolderContent extends Component {
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
                     </Upload>
-                    <Button icon="folder-add" style={{marginRight: 8}} onClick={this.showModal}>
+                    <Button icon="folder-add" style={{marginRight: 8}} onClick={this.showCreateFolderModal}>
                         新建文件夹
                     </Button>
                     <Modal
-                        visible={this.state.visible}
+                        visible={this.state.createFolderVisible}
                         title="输入文件夹名字"
-                        onOk={this.handleOk}
-                        onCancel={this.handleCancel}
+                        onOk={this.createFolderOk}
+                        onCancel={this.createFolderCancel}
                         footer={[
                             <span key="info" style={{
                                 color: 'red',
                                 fontSize: '12px',
                                 marginRight: '10px'
                             }}>{this.state.createErrorMsg}</span>,
-                            <Button key="back" onClick={this.handleCancel}>返回</Button>,
-                            <Button key="submit" type="primary" loading={this.state.loading} onClick={this.handleOk}>
+                            <Button key="back" onClick={this.createFolderCancel}>返回</Button>,
+                            <Button key="submit" type="primary" loading={this.state.createFolderLoading}
+                                    onClick={this.handleOk}>
                                 创建
                             </Button>,
                         ]}
@@ -244,8 +281,8 @@ class FolderContent extends Component {
                     </Modal>
                     {this.state.fileClick &&
                     <ButtonGroup style={{marginRight: 8}}>
-                        <Button icon="download"/>
-                        <Button icon="qrcode"/>
+                        <Button icon="download" onClick={this.handleDownload}/>
+                        <Button icon="qrcode" onClick={this.showCreateQrcodeModal}/>
                         <Button icon="eye"/>
                         <Button icon="delete"/>
                     </ButtonGroup>
@@ -296,6 +333,16 @@ class FolderContent extends Component {
                         })
                     }
                 </Row>
+                <Modal
+                    visible={this.state.createQrcodeVisible}
+                    title="手机扫码下载"
+                    onCancel={this.createQrcodeCancel}
+                    footer={null}
+                >
+                    <div style={{textAlign: 'center'}}>
+                        <QRCode value={this.state.qrcodeValue} size={256} level={'H'}/>
+                    </div>
+                </Modal>
             </div>
         );
     }
