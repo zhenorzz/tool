@@ -25,7 +25,7 @@ class FolderContent extends Component {
         createFileName: '',
         createQrcodeVisible: false,
         qrcodeValue: '',
-        filePreviewVisible:false,
+        filePreviewVisible: false,
         previewContent: '',
     };
 
@@ -335,8 +335,8 @@ class FolderContent extends Component {
                         <Button icon="download" onClick={this.handleDownload}/>
                         <Button icon="qrcode" onClick={this.showCreateQrcodeModal}/>
                         <Button icon="eye" onClick={this.showFilePreviewModal}/>
-                        <Popconfirm placement="bottom" title="你好" onConfirm={this.deleteConfirm} okText="Yes"
-                                    cancelText="No" onClick={this.showDeleteConfirm}>
+                        <Popconfirm placement="bottom" title="确认删除该文件？" onConfirm={this.deleteConfirm} okText="是"
+                                    cancelText="否" onClick={this.showDeleteConfirm}>
                             <Button icon="delete"/>
                         </Popconfirm>
 
@@ -404,7 +404,7 @@ class FolderContent extends Component {
                     onCancel={this.filePreviewCancel}
                     footer={null}
                 >
-                    <div dangerouslySetInnerHTML={{__html:this.state.previewContent}} />
+                    <div dangerouslySetInnerHTML={{__html: this.state.previewContent}}/>
                 </Modal>
             </div>
         );
