@@ -20,6 +20,10 @@ class JsonFormat extends Component {
 
     jsonFormat() {
         let data = this.state.jsonValue;
+        if (!data) {
+            return true;
+        }
+
         let obj = '';
         try {
             obj = JSON.parse(data);
@@ -35,7 +39,7 @@ class JsonFormat extends Component {
         const { TextArea } = Input;
         return (
             <div>
-                <TextArea placeholder="Autosize height based on content lines" autosize={{ minRows: 5}} value={this.state.jsonValue} onChange={this.jsonInput} onBlur={this.jsonFormat}/>
+                <TextArea placeholder="输入Json" autosize={{ minRows: 5}} value={this.state.jsonValue} onChange={this.jsonInput} onBlur={this.jsonFormat}/>
             </div>
         );
     }

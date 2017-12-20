@@ -9,11 +9,16 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Router extends Component {
-    handleClick = (e) => {
-        console.log('click ', e);
+    constructor(pros) {
+        super(pros);
+    }
+
+    componentWillMount() {
     }
 
     render() {
+        let href = window.location.href.split('/');
+        href = href[3] ? href[3] : '/';
         return (
             <BrowserRouter>
                 <Layout>
@@ -24,25 +29,38 @@ class Router extends Component {
                     >
                         <div className="logo">
                             <a href="#">
-                                <img src={logo} alt="logo" />
-                                    <h1>Software Kit</h1>
+                                <img src={logo} alt="logo"/>
+                                <h1>Software Kit</h1>
                             </a>
                         </div>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']}
-                              onClick={this.handleClick}>
-                            <Menu.Item key="1">
-                                <Icon type="folder"/>
-                                <Link to="/"><span className="nav-text">目录</span></Link>
+                        <Menu theme="dark" mode="inline" defaultSelectedKeys={[href]} defaultOpenKeys={['tool']}>
+                            <Menu.Item key="/">
+                                <Link to="/">
+                                    <Icon type="folder"/>
+                                    <span className="nav-text">目录</span>
+                                </Link>
                             </Menu.Item>
-                            <SubMenu key="sub1" title={<span><Icon type="tool"/><span>工具</span></span>}>
-                                <Menu.Item key="2"><Icon type="code-o"/><Link to="/JsonFormat">Json</Link></Menu.Item>
-                                <Menu.Item key="3"><Icon type="qrcode"/>二维码</Menu.Item>
-                                <Menu.Item key="4"><Icon type="link"/>Http</Menu.Item>
+                            <SubMenu key="tool" title={<span><Icon type="tool"/><span>工具</span></span>}>
+                                <Menu.Item key="JsonFormat">
+                                    <Link to="/JsonFormat">
+                                        <Icon type="code-o"/>Json
+                                    </Link>
+                                </Menu.Item>
+                                <Menu.Item key="qrcode">
+                                    <Link to="/qrcode">
+                                        <Icon type="qrcode"/> 二维码
+                                    </Link>
+                                </Menu.Item>
+                                <Menu.Item key="http">
+                                    <Link to="/http">
+                                        <Icon type="link"/>Http
+                                    </Link>
+                                </Menu.Item>
                             </SubMenu>
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Header style={{background: '#fff', padding: 0}} id="ant" />
+                        <Header style={{background: '#fff', padding: 0}} id="ant"/>
                         <Content style={{margin: '24px 16px 0'}}>
                             <div style={{padding: 24, background: '#fff', minHeight: 360}}>
                                 <Route exact path="/" component={Folder}/>
