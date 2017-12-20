@@ -1,14 +1,41 @@
 import React, {Component} from 'react';
-import {Input} from 'antd';
+import {Input, message} from 'antd';
 
 class JsonFormat extends Component {
+    constructor(pros) {
+        super(pros);
+        this.jsonFormat = this.jsonFormat.bind(this);
+        this.jsonInput = this.jsonInput.bind(this);
+    }
+    state = {
+        jsonValue: "",
+    }
+
+    jsonInput(e) {
+        let data = e.target.value;
+        this.setState({
+            jsonValue: data
+        })
+    }
+
+    jsonFormat() {
+        let data = this.state.jsonValue;
+        let obj = '';
+        try {
+            obj = JSON.parse(data);
+            this.setState({
+                jsonValue: JSON.stringify(obj, null, '    ')
+            })
+        } catch (e) {
+            message.error(e.message);
+        }
+
+    }
     render() {
         const { TextArea } = Input;
         return (
             <div>
-                <TextArea placeholder="Autosize height based on content lines" autosize />
-                <div style={{ margin: '24px 0' }} />
-                <TextArea placeholder="Autosize height with minimum and maximum number of lines" autosize={{ minRows: 2, maxRows: 6 }} />
+                <TextArea placeholder="Autosize height based on content lines" autosize={{ minRows: 5}} value={this.state.jsonValue} onChange={this.jsonInput} onBlur={this.jsonFormat}/>
             </div>
         );
     }
