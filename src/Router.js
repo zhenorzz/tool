@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Folder from './routes/Folder/Content';
+import JsonFormat from './routes/Json/JsonFormat';
 import {Layout, Menu, Icon} from 'antd';
 import logo from './assets/images/zzz.svg';
 
@@ -31,10 +32,10 @@ class Router extends Component {
                               onClick={this.handleClick}>
                             <Menu.Item key="1">
                                 <Icon type="folder"/>
-                                <span className="nav-text">目录</span>
+                                <Link to="/"><span className="nav-text">目录</span></Link>
                             </Menu.Item>
                             <SubMenu key="sub1" title={<span><Icon type="tool"/><span>工具</span></span>}>
-                                <Menu.Item key="2"><Icon type="code-o"/>Json</Menu.Item>
+                                <Menu.Item key="2"><Icon type="code-o"/><Link to="/JsonFormat">Json</Link></Menu.Item>
                                 <Menu.Item key="3"><Icon type="qrcode"/>二维码</Menu.Item>
                                 <Menu.Item key="4"><Icon type="link"/>Http</Menu.Item>
                             </SubMenu>
@@ -45,6 +46,7 @@ class Router extends Component {
                         <Content style={{margin: '24px 16px 0'}}>
                             <div style={{padding: 24, background: '#fff', minHeight: 360}}>
                                 <Route exact path="/" component={Folder}/>
+                                <Route exact path="/JsonFormat" component={JsonFormat}/>
                             </div>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>
