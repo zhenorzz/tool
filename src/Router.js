@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Folder from './routes/Folder/Content';
 import JsonFormat from './routes/Json/JsonFormat';
+import CreateQrcode from './routes/Qrcode/CreateQrcode';
 import {Layout, Menu, Icon} from 'antd';
 import logo from './assets/images/zzz.svg';
 
@@ -46,8 +47,8 @@ class Router extends Component {
                                         <Icon type="code-o"/>Json
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="qrcode">
-                                    <Link to="/qrcode">
+                                <Menu.Item key="CreateQrcode">
+                                    <Link to="/CreateQrcode">
                                         <Icon type="qrcode"/> 二维码
                                     </Link>
                                 </Menu.Item>
@@ -65,6 +66,7 @@ class Router extends Component {
                             <div style={{padding: 24, background: '#fff', minHeight: 360}}>
                                 <Route exact path="/" component={Folder}/>
                                 <Route exact path="/JsonFormat" component={JsonFormat}/>
+                                <Route exact path="/CreateQrcode" component={CreateQrcode}/>
                             </div>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>
