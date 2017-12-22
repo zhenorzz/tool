@@ -36,7 +36,7 @@ class CreateQrcode extends Component {
                         <TextArea placeholder="输入二维码文字" autosize={{ minRows: 4.5, maxRows: 4.5 }} />
                         <p style={{textAlign: 'center',marginTop:10}}><Button type="primary">生成二维码</Button></p>
                     </Col>
-                    <Col xs={4} sm={4} md={4}>
+                    <Col xs={4} sm={5} md={4}>
                         <Upload
                             action="//jsonplaceholder.typicode.com/posts/"
                             listType="picture-card"
@@ -49,8 +49,8 @@ class CreateQrcode extends Component {
                             <img alt="example" style={{ width: '100%' }} src={previewImage} />
                         </Modal>
                     </Col>
-                    <Col xs={5} sm={5} md={5}>
-                        <img src={require('../../assets/images/logo.png')} width="200px"/>
+                    <Col xs={10} sm={6} md={3}>
+                        <img src={require('../../assets/images/logo.png')} style={{maxWidth: '100%',height: 'auto'}}/>
                         <p style={{textAlign: 'center',marginTop:10}}>
                             <Button type="primary">下载二维码</Button>
                         </p>
