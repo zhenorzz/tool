@@ -371,6 +371,15 @@ class FolderContent extends Component {
                                     break;
                                 case 'pdf':
                                     break;
+                                case 'zip':
+                                    break;
+                                case 'apk':
+                                    break;
+                                case 'html':
+                                    break;
+                                case 'xls':
+                                    suffix = 'excel';
+                                    break;
                                 default:
                                     suffix = 'unknown';
                             }
