@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Folder from './routes/Folder/Content';
 import JsonFormat from './routes/Json/JsonFormat';
 import CreateQrcode from './routes/Qrcode/CreateQrcode';
+import Postman from './routes/Http/Postman';
 import {Layout, Menu, Icon} from 'antd';
 import logo from './assets/images/zzz.svg';
 
@@ -52,8 +53,8 @@ class Router extends Component {
                                         <Icon type="qrcode"/> 二维码
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="http">
-                                    <Link to="/http">
+                                <Menu.Item key="Postman">
+                                    <Link to="/Postman">
                                         <Icon type="link"/>Http
                                     </Link>
                                 </Menu.Item>
@@ -67,6 +68,7 @@ class Router extends Component {
                                 <Route exact path="/" component={Folder}/>
                                 <Route exact path="/JsonFormat" component={JsonFormat}/>
                                 <Route exact path="/CreateQrcode" component={CreateQrcode}/>
+                                <Route exact path="/Postman" component={Postman}/>
                             </div>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>

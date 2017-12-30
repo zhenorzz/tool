@@ -58,7 +58,6 @@ class CreateQrcode extends Component {
         })
     }
     createQrcode = () => {
-        const { fileList } = this.state;
         axios.post("/index/Qrcode/create",{
             qrcodeContent: this.state.qrcodeContent,
             qrcodeLogo: this.state.qrcodeLogo,
