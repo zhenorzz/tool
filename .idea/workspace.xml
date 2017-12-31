@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="">
+    <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="优化代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/routes/Http/Postman.js" afterPath="$PROJECT_DIR$/src/routes/Http/Postman.js" />
     </list>
@@ -40,13 +40,17 @@
       <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="213" column="86" lean-forward="false" selection-start-line="213" selection-start-column="86" selection-end-line="213" selection-end-column="86" />
+            <state relative-caret-position="713">
+              <caret line="310" column="17" lean-forward="true" selection-start-line="310" selection-start-column="17" selection-end-line="310" selection-end-column="17" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#3034#4569#0" expanded="false" />
-                <element signature="e#4613#5256#0" expanded="false" />
-                <element signature="e#5439#7250#0" expanded="false" />
+                <element signature="e#4548#4772#0" expanded="false" />
+                <element signature="e#5016#6698#0" expanded="false" />
+                <element signature="e#6742#7385#0" expanded="false" />
+                <element signature="e#7568#9391#0" expanded="false" />
+                <element signature="e#9539#9966#0" expanded="false" />
+                <element signature="e#10129#11959#0" expanded="false" />
+                <element signature="e#12127#14143#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -132,8 +136,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="186" />
-    <option name="y" value="28" />
+    <option name="x" value="18" />
+    <option name="y" value="32" />
     <option name="width" value="1400" />
     <option name="height" value="1003" />
   </component>
@@ -280,7 +284,7 @@
       <workItem from="1514073830261" duration="13947000" />
       <workItem from="1514597526154" duration="17845000" />
       <workItem from="1514678783286" duration="10352000" />
-      <workItem from="1514706997295" duration="2998000" />
+      <workItem from="1514706997295" duration="11471000" />
     </task>
     <task id="LOCAL-00001" summary="button">
       <created>1513128956178</created>
@@ -415,14 +419,21 @@
       <option name="project" value="LOCAL" />
       <updated>1514698653403</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="优化代码">
+      <created>1514710909079</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1514710909080</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110475000" />
+    <option name="totallyTimeSpent" value="118948000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="186" y="28" width="1400" height="1003" extended-state="0" />
+    <frame x="18" y="32" width="1400" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49130937" order="0" side_tool="false" content_ui="combo" />
@@ -471,11 +482,12 @@
     <MESSAGE value="setKey" />
     <MESSAGE value="send request and get response" />
     <MESSAGE value="createElem" />
-    <option name="LAST_COMMIT_MESSAGE" value="createElem" />
+    <MESSAGE value="优化代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -484,6 +496,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -576,6 +591,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -591,6 +609,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -662,6 +683,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -788,6 +812,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="28" column="38" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -836,13 +863,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="213" column="86" lean-forward="false" selection-start-line="213" selection-start-column="86" selection-end-line="213" selection-end-column="86" />
+        <state relative-caret-position="713">
+          <caret line="310" column="17" lean-forward="true" selection-start-line="310" selection-start-column="17" selection-end-line="310" selection-end-column="17" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#3034#4569#0" expanded="false" />
-            <element signature="e#4613#5256#0" expanded="false" />
-            <element signature="e#5439#7250#0" expanded="false" />
+            <element signature="e#4548#4772#0" expanded="false" />
+            <element signature="e#5016#6698#0" expanded="false" />
+            <element signature="e#6742#7385#0" expanded="false" />
+            <element signature="e#7568#9391#0" expanded="false" />
+            <element signature="e#9539#9966#0" expanded="false" />
+            <element signature="e#10129#11959#0" expanded="false" />
+            <element signature="e#12127#14143#0" expanded="false" />
           </folding>
         </state>
       </provider>

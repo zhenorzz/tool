@@ -5,6 +5,7 @@ import axios from "axios/index";
 class Postman extends Component {
     constructor(pros) {
         super(pros);
+
     }
 
     state = {
@@ -13,11 +14,16 @@ class Postman extends Component {
         url: 'http://localhost:3000/index/Http/show',
         inputUrlParamList: [0],
         inputBodyParamList: [0],
+        inputHeaderParamList: [0],
         urlParam: {
             key: {},
             value: {}
         },
         bodyParam: {
+            key: {},
+            value: {}
+        },
+        headerParam: {
             key: {},
             value: {}
         },
@@ -49,20 +55,58 @@ class Postman extends Component {
         params['method'] = this.state.method;
         params['url'] = this.state.url;
         params['urlParam'] = {};
-        const paramLength = this.state.inputUrlParamList.length;
-        const urlParam = this.state.urlParam;
-        let tempUrlParam = {};
+        params['bodyParam'] = {};
+        params['headerParam'] = {};
+        params['contentType'] = this.state.radio;
+        //url param
+        let paramLength = this.state.inputUrlParamList.length;
+        let param = this.state.urlParam;
+        let tempParam = {};
         for (let i = 0; i <= paramLength; i++) {
-            if (urlParam.key.hasOwnProperty('key' + i)) {
-                let key = urlParam.key['key' + i];
+            if (param.key.hasOwnProperty('keyUrl' + i)) {
+                let key = param.key['keyUrl' + i];
                 let value = '';
-                if (urlParam.value.hasOwnProperty('value' + i)) {
-                    value = urlParam.value['value' + i];
+                if (param.value.hasOwnProperty('valueUrl' + i)) {
+                    value = param.value['valueUrl' + i];
                 }
-                tempUrlParam[key] = value;
+                tempParam[key] = value;
             }
         }
-        params['urlParam'] = tempUrlParam;
+        params['urlParam'] = tempParam;
+
+        // body param
+        paramLength = this.state.inputBodyParamList.length;
+        param = this.state.bodyParam;
+        tempParam = {};
+        for (let i = 0; i <= paramLength; i++) {
+            if (param.key.hasOwnProperty('keyBody' + i)) {
+                let key = param.key['keyBody' + i];
+                let value = '';
+                if (param.value.hasOwnProperty('valueBody' + i)) {
+                    value = param.value['valueBody' + i];
+                }
+                tempParam[key] = value;
+            }
+        }
+        params['bodyParam'] = tempParam;
+
+        // header param
+        paramLength = this.state.inputHeaderParamList.length;
+        param = this.state.headerParam;
+        tempParam = {};
+        for (let i = 0; i <= paramLength; i++) {
+            if (param.key.hasOwnProperty('keyHeader' + i)) {
+                let key = param.key['keyHeader' + i];
+                let value = '';
+                if (param.value.hasOwnProperty('valueHeader' + i)) {
+                    value = param.value['valueHeader' + i];
+                }
+                tempParam[key] = value;
+            }
+        }
+        params['headerParam'] = tempParam;
+
+
         axios.post("/index/Http/show", params)
             .then((response) => {
                 const data = JSON.stringify(response.data, null, '    ');
@@ -75,28 +119,36 @@ class Postman extends Component {
     }
 
     paramChange = (key, index, e) => {
-        let urlParam = this.state[key];
+        const param = this.state[key];
         if (index.substring(0, 3) === 'key') {
-            urlParam.key[index] = e.target.value;
+            param.key[index] = e.target.value;
         } else {
-            urlParam.value[index] = e.target.value;
+            param.value[index] = e.target.value;
         }
         this.setState({
             [index]: e.target.value,
-            [key]: urlParam,
+            [key]: param,
         });
     }
     addInput = (key, e) => {
         const inputList = this.state[key];
-        inputList.push(inputList.length + 1);
+        inputList.push(inputList.length);
         this.setState({
             [key]: inputList
         });
     }
     radioChange = (e) => {
-        console.log('radio checked', e.target.value);
         this.setState({
             radio: e.target.value,
+        });
+    }
+
+    selectHeader = (key, index, value) => {
+        const param = this.state[key];
+        param.key[index] = value;
+        this.setState({
+            [index]: value,
+            [key]: param,
         });
     }
 
@@ -104,13 +156,30 @@ class Postman extends Component {
         const InputGroup = Input.Group;
         const Option = Select.Option;
         const RadioGroup = Radio.Group;
+        const Header = [
+            'Content-Type',
+            'Accept',
+            'Accept-Language',
+            'Accept-Encoding',
+            'Accept-Charset',
+            'cookie',
+            'User-Agent',
+            'Referer',
+        ];
+        const children = [];
+        for (let i = 0; i < Header.length; i++) {
+            children.push(<Option key={Header[i]}>{Header[i]}</Option>);
+        }
         return (
             <div>
                 {/*Header*/}
                 <Row style={{marginTop: 16}}>
                     <Col xs={12} sm={12} md={12} lg={12}>
                         <InputGroup compact>
-                            <Select size="large" defaultValue="GET" onChange={this.methodChange}>
+                            <Select style={{width: '25%'}}
+                                    size="large"
+                                    defaultValue="GET"
+                                    onChange={this.methodChange}>
                                 <Option value="GET">GET</Option>
                                 <Option value="POST">POST</Option>
                                 <Option value="PUT">PUT</Option>
@@ -118,7 +187,7 @@ class Postman extends Component {
                             </Select>
                             <Input
                                 size="large"
-                                style={{width: '80%'}}
+                                style={{width: '75%'}}
                                 placeholder="http(s)://"
                                 value={this.state.url}
                                 onChange={this.urlChange}
@@ -130,7 +199,7 @@ class Postman extends Component {
                             size="large"
                             type="primary"
                             icon="rocket"
-                            style={{marginRight: 10}}
+                            style={{marginLeft: 10, marginRight: 10}}
                             onClick={this.sendClick}
                         >
                             发送
@@ -168,16 +237,16 @@ class Postman extends Component {
                                 <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                     <div style={{marginBottom: 16}}>
                                         <Input addonBefore="Key:"
-                                               value={this.state['key' + input]}
-                                               onChange={this.paramChange.bind(this, 'urlParam', 'key' + input)}
+                                               value={this.state['keyUrl' + input]}
+                                               onChange={this.paramChange.bind(this, 'urlParam', 'keyUrl' + input)}
                                         />
                                     </div>
                                 </Col>
                                 <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                     <div style={{marginBottom: 16}}>
                                         <Input addonBefore="Value:"
-                                               value={this.state['value' + input]}
-                                               onChange={this.paramChange.bind(this, 'urlParam', 'value' + input)}
+                                               value={this.state['valueUrl' + input]}
+                                               onChange={this.paramChange.bind(this, 'urlParam', 'valueUrl' + input)}
                                         />
                                     </div>
                                 </Col>
@@ -208,23 +277,22 @@ class Postman extends Component {
 
                 {
                     this.state.current === 'body' &&
-                    this.state.radio === 'x-www-form-urlencoded' &&
                     this.state.inputBodyParamList.map((input, index) => {
                         return (
                             <Row key={index} style={index === 0 ? {marginTop: 16} : {}}>
                                 <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                     <div style={{marginBottom: 16}}>
                                         <Input addonBefore="Key:"
-                                               value={this.state['key' + input]}
-                                               onChange={this.paramChange.bind(this, 'bodyParam', 'key' + input)}
+                                               value={this.state['keyBody' + input]}
+                                               onChange={this.paramChange.bind(this, 'bodyParam', 'keyBody' + input)}
                                         />
                                     </div>
                                 </Col>
                                 <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                     <div style={{marginBottom: 16}}>
                                         <Input addonBefore="Value:"
-                                               value={this.state['value' + input]}
-                                               onChange={this.paramChange.bind(this, 'bodyParam', 'value' + input)}
+                                               value={this.state['valueBody' + input]}
+                                               onChange={this.paramChange.bind(this, 'bodyParam', 'valueBody' + input)}
                                         />
                                     </div>
                                 </Col>
@@ -233,6 +301,45 @@ class Postman extends Component {
                                     <Col xs={3} sm={3} md={3} lg={3}>
                                         <Button type="primary" icon="plus"
                                                 onClick={this.addInput.bind(this, 'inputBodyParamList')}>
+                                            添加
+                                        </Button>
+                                    </Col>
+                                }
+                            </Row>
+                        )
+                    })
+                }
+
+                {
+                    this.state.current === 'header' &&
+                    this.state.inputHeaderParamList.map((input, index) => {
+                        return (
+                            <Row key={index} style={{marginTop: 16}}>
+                                <Col xs={12} sm={12} md={12} lg={12} style={{marginRight: 6}}>
+                                    <InputGroup compact>
+                                        <Select
+                                            mode="combobox"
+                                            placeholder="Content-Type"
+                                            style={{width: '35%'}}
+                                            value={this.state['keyHeader' + input]}
+                                            onChange={this.selectHeader.bind(this, 'headerParam', 'keyHeader' + input)}
+                                        >
+                                            {children}
+                                        </Select>
+                                        <Input
+                                            placeholder="application/json"
+                                            style={{width: '65%'}}
+                                            value={this.state['valueHeader' + input]}
+                                            onChange={this.paramChange.bind(this, 'headerParam', 'valueHeader' + input)}
+                                        />
+                                    </InputGroup>
+                                </Col>
+                                {
+                                    index === 0 &&
+                                    <Col xs={3} sm={3} md={3} lg={3}>
+                                        <Button
+                                            type="primary" icon="plus"
+                                            onClick={this.addInput.bind(this, 'inputHeaderParamList')}>
                                             添加
                                         </Button>
                                     </Col>
