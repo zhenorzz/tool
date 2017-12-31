@@ -10,7 +10,11 @@ class Postman extends Component {
         current: 'param',
         method: 'GET',
         url: '',
-        inputList:[],
+        inputList: [],
+        urlParam: {
+            key: {},
+            value: {}
+        },
     }
     handleClick = (e) => {
         console.log('click ', e);
@@ -32,18 +36,41 @@ class Postman extends Component {
     }
 
     sendClick = (e) => {
-        console.log(this.state)
+        let params = {};
+        params['method'] = this.state.method;
+        params['url'] = this.state.url;
+        params['urlParam'] = {};
+        const paramLength = this.state.inputList.length;
+        const urlParam = this.state.urlParam;
+        let tempUrlParam = {};
+        for (let i = 0; i <= paramLength; i++) {
+            if (urlParam.key.hasOwnProperty('key'+i)) {
+                let key = urlParam.key['key'+i];
+                let value = '';
+                if (urlParam.value.hasOwnProperty('value'+i)) {
+                    value = urlParam.value['value'+i];
+                }
+                tempUrlParam[key] = value;
+            }
+        }
+        params['urlParam'] = tempUrlParam;
+        console.log(params)
     }
 
-    urlParamChange= (index, e) => {
+    urlParamChange = (index, e) => {
+        let urlParam = this.state.urlParam;
+        if (index.substring(0, 3) === 'key') {
+            urlParam.key[index] = e.target.value;
+        } else {
+            urlParam.value[index] = e.target.value;
+        }
         this.setState({
-            text: e.target.value,
+            urlParam: urlParam,
         });
-        console.log(index);
     }
     addUrlParamInput = (e) => {
         const inputList = this.state.inputList;
-        inputList.push(inputList.length+1);
+        inputList.push(inputList.length + 1);
         this.setState({
             inputList: inputList
         });
@@ -126,12 +153,12 @@ class Postman extends Component {
                     return (<Row key={index}>
                         <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                             <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Key:" onChange={this.urlParamChange.bind(this, 'key'+input)}/>
+                                <Input addonBefore="Key:" onChange={this.urlParamChange.bind(this, 'key' + input)}/>
                             </div>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                             <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Value:" onChange={this.urlParamChange.bind(this, 'value'+input)} />
+                                <Input addonBefore="Value:" onChange={this.urlParamChange.bind(this, 'value' + input)}/>
                             </div>
                         </Col>
                     </Row>)
