@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Menu, Input, Select, Row, Col, Button} from 'antd';
+import {Menu, Input, Select, Row, Col, Button, Radio} from 'antd';
 import axios from "axios/index";
 
 class Postman extends Component {
@@ -11,14 +11,20 @@ class Postman extends Component {
         current: 'param',
         method: 'GET',
         url: 'http://localhost:3000/index/Http/show',
-        inputList: [],
+        inputUrlParamList: [0],
+        inputBodyParamList: [0],
         urlParam: {
+            key: {},
+            value: {}
+        },
+        bodyParam: {
             key: {},
             value: {}
         },
         showResponse: false,
         showParam: true,
         response: '',
+        radio: 'x-www-form-urlencoded',
     }
     handleClick = (e) => {
         this.setState({
@@ -43,7 +49,7 @@ class Postman extends Component {
         params['method'] = this.state.method;
         params['url'] = this.state.url;
         params['urlParam'] = {};
-        const paramLength = this.state.inputList.length;
+        const paramLength = this.state.inputUrlParamList.length;
         const urlParam = this.state.urlParam;
         let tempUrlParam = {};
         for (let i = 0; i <= paramLength; i++) {
@@ -68,8 +74,8 @@ class Postman extends Component {
             })
     }
 
-    urlParamChange = (index, e) => {
-        let urlParam = this.state.urlParam;
+    paramChange = (key, index, e) => {
+        let urlParam = this.state[key];
         if (index.substring(0, 3) === 'key') {
             urlParam.key[index] = e.target.value;
         } else {
@@ -77,22 +83,30 @@ class Postman extends Component {
         }
         this.setState({
             [index]: e.target.value,
-            urlParam: urlParam,
+            [key]: urlParam,
         });
     }
-    addUrlParamInput = (e) => {
-        const inputList = this.state.inputList;
+    addInput = (key, e) => {
+        const inputList = this.state[key];
         inputList.push(inputList.length + 1);
         this.setState({
-            inputList: inputList
+            [key]: inputList
+        });
+    }
+    radioChange = (e) => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            radio: e.target.value,
         });
     }
 
     render() {
         const InputGroup = Input.Group;
         const Option = Select.Option;
+        const RadioGroup = Radio.Group;
         return (
             <div>
+                {/*Header*/}
                 <Row style={{marginTop: 16}}>
                     <Col xs={12} sm={12} md={12} lg={12}>
                         <InputGroup compact>
@@ -126,6 +140,7 @@ class Postman extends Component {
                         </Button>
                     </Col>
                 </Row>
+                {/*Menu*/}
                 <Menu
                     onClick={this.handleClick}
                     selectedKeys={[this.state.current]}
@@ -145,52 +160,88 @@ class Postman extends Component {
                     </Menu.Item>
                 </Menu>
                 {
-                    this.state.current === 'param' && <Row style={{marginTop: 16}}>
-                        <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                            <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Key:"
-                                       value={this.state['key0']}
-                                       onChange={this.urlParamChange.bind(this, 'key0')}
-                                />
-                            </div>
-                        </Col>
-                        <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                            <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Value:"
-                                       value={this.state['value0']}
-                                       onChange={this.urlParamChange.bind(this, 'value0')}
-                                />
-                            </div>
-                        </Col>
-                        <Col xs={3} sm={3} md={3} lg={3}>
-                            <Button type="primary" icon="plus" onClick={this.addUrlParamInput}>
-                                添加
-                            </Button>
-                        </Col>
-                    </Row>
+                    //additional input
+                    this.state.current === 'param' &&
+                    this.state.inputUrlParamList.map((input, index) => {
+                        return (
+                            <Row key={index} style={index === 0 ? {marginTop: 16} : {}}>
+                                <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                    <div style={{marginBottom: 16}}>
+                                        <Input addonBefore="Key:"
+                                               value={this.state['key' + input]}
+                                               onChange={this.paramChange.bind(this, 'urlParam', 'key' + input)}
+                                        />
+                                    </div>
+                                </Col>
+                                <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                    <div style={{marginBottom: 16}}>
+                                        <Input addonBefore="Value:"
+                                               value={this.state['value' + input]}
+                                               onChange={this.paramChange.bind(this, 'urlParam', 'value' + input)}
+                                        />
+                                    </div>
+                                </Col>
+                                {
+                                    index === 0 &&
+                                    <Col xs={3} sm={3} md={3} lg={3}>
+                                        <Button type="primary" icon="plus"
+                                                onClick={this.addInput.bind(this, 'inputUrlParamList')}>
+                                            添加
+                                        </Button>
+                                    </Col>
+                                }
+                            </Row>
+                        )
+                    })
                 }
 
                 {
-                    this.state.current === 'param' && this.state.inputList.map((input, index) => {
-                        return (<Row key={index}>
-                            <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                                <div style={{marginBottom: 16}}>
-                                    <Input addonBefore="Key:"
-                                           value={this.state['key' + input]}
-                                           onChange={this.urlParamChange.bind(this, 'key' + input)}
-                                    />
-                                </div>
-                            </Col>
-                            <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                                <div style={{marginBottom: 16}}>
-                                    <Input addonBefore="Value:"
-                                           value={this.state['value' + input]}
-                                           onChange={this.urlParamChange.bind(this, 'value' + input)}
-                                    />
-                                </div>
-                            </Col>
-                        </Row>)
-                    })}
+                    //request radio
+                    this.state.current === 'body' &&
+                    <RadioGroup onChange={this.radioChange} value={this.state.radio}
+                                style={{marginTop: 16, marginLeft: 6}}>
+                        <Radio value={"x-www-form-urlencoded"}>x-www-form-urlencoded</Radio>
+                        <Radio value={"application/json"}>application/json</Radio>
+                        <Radio value={"application/xml"}>application/xml</Radio>
+                    </RadioGroup>
+                }
+
+                {
+                    this.state.current === 'body' &&
+                    this.state.radio === 'x-www-form-urlencoded' &&
+                    this.state.inputBodyParamList.map((input, index) => {
+                        return (
+                            <Row key={index} style={index === 0 ? {marginTop: 16} : {}}>
+                                <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                    <div style={{marginBottom: 16}}>
+                                        <Input addonBefore="Key:"
+                                               value={this.state['key' + input]}
+                                               onChange={this.paramChange.bind(this, 'bodyParam', 'key' + input)}
+                                        />
+                                    </div>
+                                </Col>
+                                <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                    <div style={{marginBottom: 16}}>
+                                        <Input addonBefore="Value:"
+                                               value={this.state['value' + input]}
+                                               onChange={this.paramChange.bind(this, 'bodyParam', 'value' + input)}
+                                        />
+                                    </div>
+                                </Col>
+                                {
+                                    index === 0 &&
+                                    <Col xs={3} sm={3} md={3} lg={3}>
+                                        <Button type="primary" icon="plus"
+                                                onClick={this.addInput.bind(this, 'inputBodyParamList')}>
+                                            添加
+                                        </Button>
+                                    </Col>
+                                }
+                            </Row>
+                        )
+                    })
+                }
+
                 {
                     this.state.current === 'response' &&
                     <div style={{marginTop: 16, marginLeft: 6}}>
