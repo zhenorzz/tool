@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/Router.js" afterPath="$PROJECT_DIR$/src/Router.js" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Folder/Content.js" afterPath="$PROJECT_DIR$/src/routes/Folder/Content.js" />
       <change beforePath="$PROJECT_DIR$/src/routes/Http/Postman.js" afterPath="$PROJECT_DIR$/src/routes/Http/Postman.js" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js" afterPath="$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonFormat.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes/Json/JsonFormat.js">
+      <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="678">
+              <caret line="194" column="45" lean-forward="false" selection-start-line="194" selection-start-column="45" selection-end-line="194" selection-end-column="45" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -42,55 +45,8 @@
       <file leaf-file-name="CreateQrcode.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="159" column="37" lean-forward="true" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Content.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes/Folder/Content.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5943">
-              <caret line="397" column="20" lean-forward="true" selection-start-line="397" selection-start-column="20" selection-end-line="397" selection-end-column="20" />
-              <folding>
-                <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
-                <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
-                <element signature="n#!!block;n#handleFileClick#0;n#FolderContent#0" expanded="false" />
-                <element signature="n#!!block;n#handleFolderClick#0;n#FolderContent#0" expanded="false" />
-                <element signature="n#!!block;n#handleFileChange#0;n#FolderContent#0" expanded="false" />
-                <element signature="e#4478#4560#0" expanded="false" />
-                <element signature="e#6244#6304#0" expanded="false" />
-                <element signature="e#6335#6399#0" expanded="false" />
-                <element signature="e#6440#6635#0" expanded="false" />
-                <element signature="e#6684#6956#0" expanded="false" />
-                <element signature="e#6988#7048#0" expanded="false" />
-                <element signature="e#7092#7149#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Router.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Router.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="399">
+              <caret line="64" column="14" lean-forward="true" selection-start-line="56" selection-start-column="8" selection-end-line="64" selection-end-column="14" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -101,7 +57,7 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="126">
               <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -113,7 +69,7 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
+            <state relative-caret-position="377">
               <caret line="48" column="1" lean-forward="false" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
               <folding />
             </state>
@@ -133,6 +89,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/routes/Http/Postman.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/App.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/routes/Folder/Content.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js" root0="SKIP_INSPECTION" />
@@ -149,10 +106,10 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/routes/Json/JsonFormat.js" />
         <option value="$PROJECT_DIR$/src/index.css" />
-        <option value="$PROJECT_DIR$/src/routes/Folder/Content.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/Router.js" />
+        <option value="$PROJECT_DIR$/src/routes/Folder/Content.js" />
         <option value="$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js" />
+        <option value="$PROJECT_DIR$/src/Router.js" />
         <option value="$PROJECT_DIR$/src/routes/Http/Postman.js" />
       </list>
     </option>
@@ -175,10 +132,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="207" />
-    <option name="y" value="47" />
+    <option name="x" value="290" />
+    <option name="y" value="53" />
     <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="height" value="1003" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -322,7 +279,7 @@
       <workItem from="1514039219906" duration="5304000" />
       <workItem from="1514073830261" duration="13947000" />
       <workItem from="1514597526154" duration="17845000" />
-      <workItem from="1514678783286" duration="2648000" />
+      <workItem from="1514678783286" duration="6683000" />
     </task>
     <task id="LOCAL-00001" summary="button">
       <created>1513128956178</created>
@@ -436,14 +393,21 @@
       <option name="project" value="LOCAL" />
       <updated>1514648886000</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="setKey">
+      <created>1514685404147</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1514685404147</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99773000" />
+    <option name="totallyTimeSpent" value="103808000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="207" y="47" width="1400" height="1000" extended-state="0" />
+    <frame x="290" y="53" width="1400" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49130937" order="0" side_tool="false" content_ui="combo" />
@@ -489,7 +453,8 @@
     <MESSAGE value="create Qrcode" />
     <MESSAGE value="readme" />
     <MESSAGE value="postman" />
-    <option name="LAST_COMMIT_MESSAGE" value="postman" />
+    <MESSAGE value="setKey" />
+    <option name="LAST_COMMIT_MESSAGE" value="setKey" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -838,6 +803,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1490">
           <caret line="124" column="14" lean-forward="false" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -851,66 +817,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Json/JsonFormat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="48" column="1" lean-forward="false" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Folder/Content.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5943">
-          <caret line="397" column="20" lean-forward="true" selection-start-line="397" selection-start-column="20" selection-end-line="397" selection-end-column="20" />
+        <state relative-caret-position="356">
+          <caret line="376" column="42" lean-forward="false" selection-start-line="376" selection-start-column="42" selection-end-line="376" selection-end-column="42" />
           <folding>
             <element signature="n#!!block;n#path#0;n#FolderContent#0" expanded="false" />
             <element signature="n#!!block;n#handleDirClick#0;n#FolderContent#0" expanded="false" />
@@ -928,10 +838,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="28" column="38" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="48" column="1" lean-forward="false" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Json/JsonFormat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="64" column="14" lean-forward="true" selection-start-line="56" selection-start-column="8" selection-end-line="64" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="159" column="37" lean-forward="true" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
+        <state relative-caret-position="678">
+          <caret line="194" column="45" lean-forward="false" selection-start-line="194" selection-start-column="45" selection-end-line="194" selection-end-column="45" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

@@ -11,10 +11,6 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Router extends Component {
-    constructor(pros) {
-        super(pros);
-    }
-
     componentWillMount() {
     }
 
@@ -30,7 +26,7 @@ class Router extends Component {
                         width="260"
                     >
                         <div className="logo">
-                            <a href="#">
+                            <a href="/">
                                 <img src={logo} alt="logo"/>
                                 <h1>Software Kit</h1>
                             </a>

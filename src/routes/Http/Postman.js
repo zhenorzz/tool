@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Menu, Input, Select, Row, Col, Button} from 'antd';
+import axios from "axios/index";
 
 class Postman extends Component {
     constructor(pros) {
@@ -15,9 +16,11 @@ class Postman extends Component {
             key: {},
             value: {}
         },
+        showResponse: false,
+        showParam: true,
+        response: '',
     }
     handleClick = (e) => {
-        console.log('click ', e);
         this.setState({
             current: e.key,
         });
@@ -44,17 +47,24 @@ class Postman extends Component {
         const urlParam = this.state.urlParam;
         let tempUrlParam = {};
         for (let i = 0; i <= paramLength; i++) {
-            if (urlParam.key.hasOwnProperty('key'+i)) {
-                let key = urlParam.key['key'+i];
+            if (urlParam.key.hasOwnProperty('key' + i)) {
+                let key = urlParam.key['key' + i];
                 let value = '';
-                if (urlParam.value.hasOwnProperty('value'+i)) {
-                    value = urlParam.value['value'+i];
+                if (urlParam.value.hasOwnProperty('value' + i)) {
+                    value = urlParam.value['value' + i];
                 }
                 tempUrlParam[key] = value;
             }
         }
         params['urlParam'] = tempUrlParam;
-        console.log(params)
+        axios.post("/index/Http/show", params)
+            .then((response) => {
+                console.log(response)
+                this.setState({
+                    current: 'response',
+                    response: JSON.stringify(response.data),
+                });
+            })
     }
 
     urlParamChange = (index, e) => {
@@ -65,6 +75,7 @@ class Postman extends Component {
             urlParam.value[index] = e.target.value;
         }
         this.setState({
+            [index] : e.target.value,
             urlParam: urlParam,
         });
     }
@@ -132,37 +143,60 @@ class Postman extends Component {
                         Response
                     </Menu.Item>
                 </Menu>
-                <Row style={{marginTop: 16}}>
-                    <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                        <div style={{marginBottom: 16}}>
-                            <Input addonBefore="Key:" onChange={this.urlParamChange.bind(this, 'key0')}/>
-                        </div>
-                    </Col>
-                    <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
-                        <div style={{marginBottom: 16}}>
-                            <Input addonBefore="Value:" onChange={this.urlParamChange.bind(this, 'value0')}/>
-                        </div>
-                    </Col>
-                    <Col xs={3} sm={3} md={3} lg={3}>
-                        <Button type="primary" icon="plus" onClick={this.addUrlParamInput}>
-                            添加
-                        </Button>
-                    </Col>
-                </Row>
-                {this.state.inputList.map((input, index) => {
-                    return (<Row key={index}>
+                {
+                    this.state.current === 'param' && <Row style={{marginTop: 16}}>
                         <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                             <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Key:" onChange={this.urlParamChange.bind(this, 'key' + input)}/>
+                                <Input addonBefore="Key:"
+                                       value={this.state['key0']}
+                                       onChange={this.urlParamChange.bind(this, 'key0')}
+                                />
                             </div>
                         </Col>
                         <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                             <div style={{marginBottom: 16}}>
-                                <Input addonBefore="Value:" onChange={this.urlParamChange.bind(this, 'value' + input)}/>
+                                <Input addonBefore="Value:"
+                                       value={this.state['value0']}
+                                       onChange={this.urlParamChange.bind(this, 'value0')}
+                                />
                             </div>
                         </Col>
-                    </Row>)
-                })}
+                        <Col xs={3} sm={3} md={3} lg={3}>
+                            <Button type="primary" icon="plus" onClick={this.addUrlParamInput}>
+                                添加
+                            </Button>
+                        </Col>
+                    </Row>
+                }
+
+                {
+                    this.state.current === 'param' && this.state.inputList.map((input, index) => {
+                        return (<Row key={index}>
+                            <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                <div style={{marginBottom: 16}}>
+                                    <Input addonBefore="Key:"
+                                           value={this.state['key'+input]}
+                                           onChange={this.urlParamChange.bind(this, 'key' + input)}
+                                    />
+                                </div>
+                            </Col>
+                            <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
+                                <div style={{marginBottom: 16}}>
+                                    <Input addonBefore="Value:"
+                                           value={this.state['value'+input]}
+                                           onChange={this.urlParamChange.bind(this, 'value' + input)}
+                                    />
+                                </div>
+                            </Col>
+                        </Row>)
+                    })}
+                {
+                    this.state.current === 'response' &&
+                    <div style={{marginTop: 16,marginLeft: 6}}>
+                        {this.state.response}
+                    </div>
+                }
+
             </div>
         );
     }

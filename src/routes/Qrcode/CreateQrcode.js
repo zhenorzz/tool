@@ -3,10 +3,6 @@ import {Row, Col, Input, Upload, Icon, Modal, Button, message} from 'antd';
 import axios from "axios/index";
 
 class CreateQrcode extends Component {
-    constructor(pros) {
-        super(pros);
-    }
-
     state = {
         previewVisible: false,
         previewImage: '',
