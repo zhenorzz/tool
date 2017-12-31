@@ -10,7 +10,7 @@ class Postman extends Component {
     state = {
         current: 'param',
         method: 'GET',
-        url: '',
+        url: 'http://localhost:3000/index/Http/show',
         inputList: [],
         urlParam: {
             key: {},
@@ -59,11 +59,12 @@ class Postman extends Component {
         params['urlParam'] = tempUrlParam;
         axios.post("/index/Http/show", params)
             .then((response) => {
-                console.log(response)
+                const data = JSON.stringify(response.data, null, '    ');
                 this.setState({
                     current: 'response',
-                    response: JSON.stringify(response.data),
+                    response: React.createElement('pre', null, data)
                 });
+                console.log(response)
             })
     }
 
@@ -75,7 +76,7 @@ class Postman extends Component {
             urlParam.value[index] = e.target.value;
         }
         this.setState({
-            [index] : e.target.value,
+            [index]: e.target.value,
             urlParam: urlParam,
         });
     }
@@ -175,7 +176,7 @@ class Postman extends Component {
                             <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                 <div style={{marginBottom: 16}}>
                                     <Input addonBefore="Key:"
-                                           value={this.state['key'+input]}
+                                           value={this.state['key' + input]}
                                            onChange={this.urlParamChange.bind(this, 'key' + input)}
                                     />
                                 </div>
@@ -183,7 +184,7 @@ class Postman extends Component {
                             <Col xs={6} sm={6} md={6} lg={6} style={{marginRight: 6}}>
                                 <div style={{marginBottom: 16}}>
                                     <Input addonBefore="Value:"
-                                           value={this.state['value'+input]}
+                                           value={this.state['value' + input]}
                                            onChange={this.urlParamChange.bind(this, 'value' + input)}
                                     />
                                 </div>
@@ -192,11 +193,10 @@ class Postman extends Component {
                     })}
                 {
                     this.state.current === 'response' &&
-                    <div style={{marginTop: 16,marginLeft: 6}}>
+                    <div style={{marginTop: 16, marginLeft: 6}}>
                         {this.state.response}
                     </div>
                 }
-
             </div>
         );
     }
