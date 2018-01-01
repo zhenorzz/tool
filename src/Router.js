@@ -4,7 +4,7 @@ import Folder from './routes/Folder/Content';
 import JsonFormat from './routes/Json/JsonFormat';
 import CreateQrcode from './routes/Qrcode/CreateQrcode';
 import Postman from './routes/Http/Postman';
-import {Layout, Menu, Icon} from 'antd';
+import {Layout, Menu, Icon, Button} from 'antd';
 import logo from './assets/images/zzz.svg';
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -58,9 +58,11 @@ class Router extends Component {
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Header style={{background: '#fff', padding: 0}} id="ant"/>
+                        <Header style={{background: '#fff', textAlign: 'right'}} id="ant">
+                            click here to get source: <Button shape="circle" icon="github" href="https://github.com/zhenorzz/tool" />
+                        </Header>
                         <Content style={{margin: '24px 16px 0'}}>
-                            <div style={{padding: 24, background: '#fff', minHeight: 360}}>
+                            <div style={{padding: 24, background: '#fff', minHeight: 796}}>
                                 <Route exact path="/" component={Folder}/>
                                 <Route exact path="/JsonFormat" component={JsonFormat}/>
                                 <Route exact path="/CreateQrcode" component={CreateQrcode}/>

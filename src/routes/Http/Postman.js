@@ -11,7 +11,7 @@ class Postman extends Component {
     state = {
         current: 'param',
         method: 'GET',
-        url: 'http://localhost:3000/index/Http/show',
+        url: '',
         inputUrlParamList: [0],
         inputBodyParamList: [0],
         inputHeaderParamList: [0],
@@ -109,12 +109,25 @@ class Postman extends Component {
 
         axios.post("/index/Http/show", params)
             .then((response) => {
-                const data = JSON.stringify(response.data, null, '    ');
+                const data = response.data;
+                const contentType = data.contentType;
+                let insideData;
+                switch (contentType) {
+                    case 'text/html':
+                        insideData = React.createElement('pre', null, data.body);
+                        break;
+                    case 'application/json':
+                        insideData = JSON.parse(data.body);
+                        insideData = React.createElement('pre', null, JSON.stringify(insideData, null, '    '))
+                        break;
+                }
                 this.setState({
                     current: 'response',
-                    response: React.createElement('pre', null, data)
+                    response: insideData
                 });
-                console.log(response)
+            })
+            .catch((error)=>{
+                console.log(error)
             })
     }
 
@@ -174,7 +187,7 @@ class Postman extends Component {
             <div>
                 {/*Header*/}
                 <Row style={{marginTop: 16}}>
-                    <Col xs={12} sm={12} md={12} lg={12}>
+                    <Col xs={24} sm={24} md={12} lg={12}>
                         <InputGroup compact>
                             <Select style={{width: '25%'}}
                                     size="large"
@@ -194,7 +207,7 @@ class Postman extends Component {
                             />
                         </InputGroup>
                     </Col>
-                    <Col xs={8} sm={8} md={8} lg={8}>
+                    <Col xs={24} sm={24} md={8} lg={8}>
                         <Button
                             size="large"
                             type="primary"

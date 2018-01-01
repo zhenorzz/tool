@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="优化代码">
+    <list default="true" id="72961511-ffd0-44e7-98f2-11129a5289c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change beforePath="$PROJECT_DIR$/src/Router.js" afterPath="$PROJECT_DIR$/src/Router.js" />
       <change beforePath="$PROJECT_DIR$/src/routes/Http/Postman.js" afterPath="$PROJECT_DIR$/src/routes/Http/Postman.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,40 +32,9 @@
       <file leaf-file-name="JsonFormat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/Json/JsonFormat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
+            <state relative-caret-position="356">
               <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="59" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="310" column="17" lean-forward="true" selection-start-line="310" selection-start-column="17" selection-end-line="310" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#4548#4772#0" expanded="false" />
-                <element signature="e#5016#6698#0" expanded="false" />
-                <element signature="e#6742#7385#0" expanded="false" />
-                <element signature="e#7568#9391#0" expanded="false" />
-                <element signature="e#9539#9966#0" expanded="false" />
-                <element signature="e#10129#11959#0" expanded="false" />
-                <element signature="e#12127#14143#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateQrcode.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -71,10 +42,29 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="126">
               <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="545">
+              <caret line="120" column="95" lean-forward="false" selection-start-line="120" selection-start-column="95" selection-end-line="120" selection-end-column="95" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#5037#5261#0" expanded="false" />
+                <element signature="e#5505#7189#0" expanded="false" />
+                <element signature="e#7233#7876#0" expanded="false" />
+                <element signature="e#8059#9882#0" expanded="false" />
+                <element signature="e#10030#10457#0" expanded="false" />
+                <element signature="e#10620#12450#0" expanded="false" />
+                <element signature="e#12618#14634#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -113,6 +103,7 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/routes/Folder/Content.js" />
         <option value="$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/Router.js" />
         <option value="$PROJECT_DIR$/src/routes/Http/Postman.js" />
       </list>
@@ -137,7 +128,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="18" />
-    <option name="y" value="32" />
+    <option name="y" value="20" />
     <option name="width" value="1400" />
     <option name="height" value="1003" />
   </component>
@@ -188,6 +179,11 @@
             <path>
               <item name="tool" type="b2602c69:ProjectViewProjectNode" />
               <item name="tool" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -221,8 +217,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,7 +280,8 @@
       <workItem from="1514073830261" duration="13947000" />
       <workItem from="1514597526154" duration="17845000" />
       <workItem from="1514678783286" duration="10352000" />
-      <workItem from="1514706997295" duration="11471000" />
+      <workItem from="1514706997295" duration="12174000" />
+      <workItem from="1514765289546" duration="6623000" />
     </task>
     <task id="LOCAL-00001" summary="button">
       <created>1513128956178</created>
@@ -426,14 +423,21 @@
       <option name="project" value="LOCAL" />
       <updated>1514710909080</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Header">
+      <created>1514733148107</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1514733148107</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118948000" />
+    <option name="totallyTimeSpent" value="126274000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="32" width="1400" height="1003" extended-state="0" />
+    <frame x="18" y="20" width="1400" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49130937" order="0" side_tool="false" content_ui="combo" />
@@ -441,8 +445,8 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25403818" sideWeight="0.5086906" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25403818" sideWeight="0.5086906" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32054177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -483,7 +487,8 @@
     <MESSAGE value="send request and get response" />
     <MESSAGE value="createElem" />
     <MESSAGE value="优化代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化代码" />
+    <MESSAGE value="Header" />
+    <option name="LAST_COMMIT_MESSAGE" value="Header" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -492,16 +497,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -592,7 +587,7 @@
         <state relative-caret-position="315">
           <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
           <folding>
-            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -610,7 +605,7 @@
         <state relative-caret-position="63">
           <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
           <folding>
-            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -684,7 +679,7 @@
         <state relative-caret-position="168">
           <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
           <folding>
-            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -808,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="28" column="38" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -825,19 +810,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/src/Router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+        <state relative-caret-position="573">
+          <caret line="60" column="60" lean-forward="false" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Qrcode/CreateQrcode.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
+        <state relative-caret-position="293">
           <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -847,7 +840,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Json/JsonFormat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
+        <state relative-caret-position="356">
           <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="59" />
           <folding />
         </state>
@@ -861,19 +854,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="310" column="17" lean-forward="true" selection-start-line="310" selection-start-column="17" selection-end-line="310" selection-end-column="17" />
+        <state relative-caret-position="545">
+          <caret line="120" column="95" lean-forward="false" selection-start-line="120" selection-start-column="95" selection-end-line="120" selection-end-column="95" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#4548#4772#0" expanded="false" />
-            <element signature="e#5016#6698#0" expanded="false" />
-            <element signature="e#6742#7385#0" expanded="false" />
-            <element signature="e#7568#9391#0" expanded="false" />
-            <element signature="e#9539#9966#0" expanded="false" />
-            <element signature="e#10129#11959#0" expanded="false" />
-            <element signature="e#12127#14143#0" expanded="false" />
+            <element signature="e#5037#5261#0" expanded="false" />
+            <element signature="e#5505#7189#0" expanded="false" />
+            <element signature="e#7233#7876#0" expanded="false" />
+            <element signature="e#8059#9882#0" expanded="false" />
+            <element signature="e#10030#10457#0" expanded="false" />
+            <element signature="e#10620#12450#0" expanded="false" />
+            <element signature="e#12618#14634#0" expanded="false" />
           </folding>
         </state>
       </provider>
