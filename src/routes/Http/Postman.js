@@ -27,10 +27,11 @@ class Postman extends Component {
             key: {},
             value: {}
         },
+        xmlParam: '',
         showResponse: false,
         showParam: true,
         response: '',
-        radio: 'x-www-form-urlencoded',
+        radio: 'application/x-www-form-urlencoded',
     }
     handleClick = (e) => {
         this.setState({
@@ -49,14 +50,15 @@ class Postman extends Component {
             url: e.target.value,
         });
     }
-
+    xmlChange = (e) => {
+        this.setState({
+            xmlParam: e.target.value,
+        });
+    }
     sendClick = (e) => {
         let params = {};
         params['method'] = this.state.method;
         params['url'] = this.state.url;
-        params['urlParam'] = {};
-        params['bodyParam'] = {};
-        params['headerParam'] = {};
         params['contentType'] = this.state.radio;
         //url param
         let paramLength = this.state.inputUrlParamList.length;
@@ -75,21 +77,26 @@ class Postman extends Component {
         params['urlParam'] = tempParam;
 
         // body param
-        paramLength = this.state.inputBodyParamList.length;
-        param = this.state.bodyParam;
-        tempParam = {};
-        for (let i = 0; i <= paramLength; i++) {
-            if (param.key.hasOwnProperty('keyBody' + i)) {
-                let key = param.key['keyBody' + i];
-                let value = '';
-                if (param.value.hasOwnProperty('valueBody' + i)) {
-                    value = param.value['valueBody' + i];
+        if (this.state.method === 'GET') {
+            params['bodyParam'] = {};
+        } else if (this.state.radio === 'application/xml') {
+            params['bodyParam'] = this.state.xmlParam;
+        } else {
+            paramLength = this.state.inputBodyParamList.length;
+            param = this.state.bodyParam;
+            tempParam = {};
+            for (let i = 0; i <= paramLength; i++) {
+                if (param.key.hasOwnProperty('keyBody' + i)) {
+                    let key = param.key['keyBody' + i];
+                    let value = '';
+                    if (param.value.hasOwnProperty('valueBody' + i)) {
+                        value = param.value['valueBody' + i];
+                    }
+                    tempParam[key] = value;
                 }
-                tempParam[key] = value;
             }
+            params['bodyParam'] = tempParam;
         }
-        params['bodyParam'] = tempParam;
-
         // header param
         paramLength = this.state.inputHeaderParamList.length;
         param = this.state.headerParam;
@@ -103,6 +110,9 @@ class Postman extends Component {
                 }
                 tempParam[key] = value;
             }
+        }
+        if (this.state.method !== 'GET') {
+            tempParam['Content-Type'] = this.state.radio + ';charset=utf-8';
         }
         params['headerParam'] = tempParam;
 
@@ -126,7 +136,7 @@ class Postman extends Component {
                     response: insideData
                 });
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error)
             })
     }
@@ -169,6 +179,7 @@ class Postman extends Component {
         const InputGroup = Input.Group;
         const Option = Select.Option;
         const RadioGroup = Radio.Group;
+        const {TextArea} = Input;
         const Header = [
             'Content-Type',
             'Accept',
@@ -282,7 +293,7 @@ class Postman extends Component {
                     this.state.current === 'body' &&
                     <RadioGroup onChange={this.radioChange} value={this.state.radio}
                                 style={{marginTop: 16, marginLeft: 6}}>
-                        <Radio value={"x-www-form-urlencoded"}>x-www-form-urlencoded</Radio>
+                        <Radio value={"application/x-www-form-urlencoded"}>application/x-www-form-urlencoded</Radio>
                         <Radio value={"application/json"}>application/json</Radio>
                         <Radio value={"application/xml"}>application/xml</Radio>
                     </RadioGroup>
@@ -290,6 +301,7 @@ class Postman extends Component {
 
                 {
                     this.state.current === 'body' &&
+                    this.state.radio !== 'application/xml' &&
                     this.state.inputBodyParamList.map((input, index) => {
                         return (
                             <Row key={index} style={index === 0 ? {marginTop: 16} : {}}>
@@ -322,7 +334,21 @@ class Postman extends Component {
                         )
                     })
                 }
-
+                {
+                    this.state.current === 'body' &&
+                    this.state.radio === 'application/xml' &&
+                    <Row style={{marginTop: 16}}>
+                        <Col xs={12} sm={12} md={12} lg={12} style={{marginRight: 6}}>
+                            <div style={{marginBottom: 16}}>
+                                <TextArea
+                                    placeholder="输入XML文本"
+                                    autosize={{minRows: 6}}
+                                    onChange={this.xmlChange}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
+                }
                 {
                     this.state.current === 'header' &&
                     this.state.inputHeaderParamList.map((input, index) => {
