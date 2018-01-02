@@ -322,7 +322,7 @@ class FolderContent extends Component {
                             }}>{this.state.createErrorMsg}</span>,
                             <Button key="back" onClick={this.createFolderCancel}>返回</Button>,
                             <Button key="submit" type="primary" loading={this.state.createFolderLoading}
-                                    onClick={this.handleOk}>
+                                    onClick={this.createFolderOk}>
                                 创建
                             </Button>,
                         ]}
