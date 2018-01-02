@@ -4,6 +4,7 @@ import Folder from './routes/Folder/Content';
 import JsonFormat from './routes/Json/JsonFormat';
 import CreateQrcode from './routes/Qrcode/CreateQrcode';
 import Postman from './routes/Http/Postman';
+import VimPage from './routes/Vim/VimPage';
 import {Layout, Menu, Icon, Button} from 'antd';
 import logo from './assets/images/zzz.svg';
 
@@ -54,6 +55,11 @@ class Router extends Component {
                                         <Icon type="link"/>Http
                                     </Link>
                                 </Menu.Item>
+                                <Menu.Item key="VimPage">
+                                    <Link to="/VimPage">
+                                        <Icon type="copy"/>Vim速查
+                                    </Link>
+                                </Menu.Item>
                             </SubMenu>
                         </Menu>
                     </Sider>
@@ -67,6 +73,7 @@ class Router extends Component {
                                 <Route exact path="/JsonFormat" component={JsonFormat}/>
                                 <Route exact path="/CreateQrcode" component={CreateQrcode}/>
                                 <Route exact path="/Postman" component={Postman}/>
+                                <Route exact path="/VimPage" component={VimPage}/>
                             </div>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>
