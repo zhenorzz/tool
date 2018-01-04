@@ -123,8 +123,12 @@ class Postman extends Component {
                 const contentType = data.contentType;
                 let insideData;
                 switch (contentType) {
+                    case 'application/xml':
+                    case 'text/plain':
+                        insideData = data.body;
+                        break;
                     case 'text/html':
-                        insideData = React.createElement('', null, data.body);
+                        insideData = <div dangerouslySetInnerHTML={{__html: data.body}}></div>;
                         break;
                     case 'application/json':
                         insideData = JSON.parse(data.body);
