@@ -68,18 +68,18 @@
       <file leaf-file-name="Postman.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="135" column="30" lean-forward="true" selection-start-line="135" selection-start-column="30" selection-end-line="135" selection-end-column="30" />
+            <state relative-caret-position="567">
+              <caret line="120" column="31" lean-forward="true" selection-start-line="120" selection-start-column="31" selection-end-line="120" selection-end-column="31" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#5693#5917#0" expanded="false" />
-                <element signature="e#6161#7845#0" expanded="false" />
-                <element signature="e#7889#8532#0" expanded="false" />
-                <element signature="e#8715#10538#0" expanded="false" />
-                <element signature="e#10686#11137#0" expanded="false" />
-                <element signature="e#11362#13192#0" expanded="false" />
-                <element signature="e#13365#13892#0" expanded="false" />
-                <element signature="e#14058#16074#0" expanded="false" />
+                <element signature="e#5711#5935#0" expanded="false" />
+                <element signature="e#6179#7863#0" expanded="false" />
+                <element signature="e#7907#8550#0" expanded="false" />
+                <element signature="e#8733#10556#0" expanded="false" />
+                <element signature="e#10704#11155#0" expanded="false" />
+                <element signature="e#11380#13210#0" expanded="false" />
+                <element signature="e#13383#13910#0" expanded="false" />
+                <element signature="e#14076#16092#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -325,7 +325,7 @@
       <workItem from="1514678783286" duration="10352000" />
       <workItem from="1514706997295" duration="12174000" />
       <workItem from="1514765289546" duration="8928000" />
-      <workItem from="1515058102379" duration="703000" />
+      <workItem from="1515058102379" duration="935000" />
     </task>
     <task id="LOCAL-00001" summary="button">
       <created>1513128956178</created>
@@ -502,11 +502,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515058175662</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="dynamic html">
+      <created>1515058827996</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1515058827996</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134185000" />
+    <option name="totallyTimeSpent" value="134417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="211" y="38" width="1400" height="1000" extended-state="0" />
@@ -563,7 +570,8 @@
     <MESSAGE value="创建文件夹" />
     <MESSAGE value="vim" />
     <MESSAGE value="html" />
-    <option name="LAST_COMMIT_MESSAGE" value="html" />
+    <MESSAGE value="dynamic html" />
+    <option name="LAST_COMMIT_MESSAGE" value="dynamic html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -926,18 +934,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Http/Postman.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="135" column="30" lean-forward="true" selection-start-line="135" selection-start-column="30" selection-end-line="135" selection-end-column="30" />
+        <state relative-caret-position="567">
+          <caret line="120" column="31" lean-forward="true" selection-start-line="120" selection-start-column="31" selection-end-line="120" selection-end-column="31" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#5693#5917#0" expanded="false" />
-            <element signature="e#6161#7845#0" expanded="false" />
-            <element signature="e#7889#8532#0" expanded="false" />
-            <element signature="e#8715#10538#0" expanded="false" />
-            <element signature="e#10686#11137#0" expanded="false" />
-            <element signature="e#11362#13192#0" expanded="false" />
-            <element signature="e#13365#13892#0" expanded="false" />
-            <element signature="e#14058#16074#0" expanded="false" />
+            <element signature="e#5711#5935#0" expanded="false" />
+            <element signature="e#6179#7863#0" expanded="false" />
+            <element signature="e#7907#8550#0" expanded="false" />
+            <element signature="e#8733#10556#0" expanded="false" />
+            <element signature="e#10704#11155#0" expanded="false" />
+            <element signature="e#11380#13210#0" expanded="false" />
+            <element signature="e#13383#13910#0" expanded="false" />
+            <element signature="e#14076#16092#0" expanded="false" />
           </folding>
         </state>
       </provider>

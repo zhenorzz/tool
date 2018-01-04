@@ -3,10 +3,6 @@ import {Menu, Input, Select, Row, Col, Button, Radio} from 'antd';
 import axios from "axios/index";
 
 class Postman extends Component {
-    constructor(pros) {
-        super(pros);
-
-    }
 
     state = {
         current: 'param',
@@ -134,6 +130,8 @@ class Postman extends Component {
                         insideData = JSON.parse(data.body);
                         insideData = React.createElement('pre', null, JSON.stringify(insideData, null, '    '))
                         break;
+                    default:
+                        insideData = '';
                 }
                 this.setState({
                     current: 'response',
