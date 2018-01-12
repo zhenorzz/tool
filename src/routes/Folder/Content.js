@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Upload, Icon, Divider, Button, Row, Col, Modal, Popconfirm, Input, message} from 'antd';
+import {Upload, Icon, Divider, Button, Row, Col, Modal, Popconfirm, Input, message, Spin} from 'antd';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 
@@ -27,6 +27,7 @@ class FolderContent extends Component {
         qrcodeValue: '',
         filePreviewVisible: false,
         previewContent: '',
+        fileListLoading: true,
     };
 
     //文件夹路径
@@ -49,6 +50,7 @@ class FolderContent extends Component {
                 this.setState({
                     file: file,
                     dir: dir,
+                    fileListLoading: false
                 });
             })
     }
@@ -61,12 +63,13 @@ class FolderContent extends Component {
         });
     }
 
-    //点击目录
+    //点击目录导航
     handleDirClick(item, index, event) {
         let folders = this.state.folder;
         folders = folders.slice(0, index + 1);
         this.setState({
             folder: folders,
+            fileListLoading: true,
         });
         let path = '';
         for (let i = 1; i < folders.length; i++) {
@@ -80,6 +83,7 @@ class FolderContent extends Component {
                 this.setState({
                     file: file ? file : [],
                     dir: dir ? dir : [],
+                    fileListLoading: false,
                 });
             })
     }
@@ -94,12 +98,13 @@ class FolderContent extends Component {
         });
     }
 
-    //点击目录导航
+    //点击目录
     handleFolderClick(item) {
         let folders = this.state.folder;
         folders.push(item);
         this.setState({
             folder: folders,
+            fileListLoading: true,
         });
         let path = this.path();
         axios.get('/index/Index/read', {params: {path: path}})
@@ -110,6 +115,7 @@ class FolderContent extends Component {
                 this.setState({
                     file: file ? file : [],
                     dir: dir ? dir : [],
+                    fileListLoading: false,
                 });
             })
     }
@@ -258,24 +264,27 @@ class FolderContent extends Component {
     //创建二维码
     showFilePreviewModal = (e) => {
         e.nativeEvent.stopImmediatePropagation();
+        this.setState({
+            previewContentLoading: true,
+        });
         let fileName = this.state.fileName;
         axios.delete('/index/Index/preview?file=' + this.path() + fileName)
             .then((response) => {
                 let html = response.request.response;
                 this.setState({
                     previewContent: html,
+                    filePreviewVisible: true,
                 });
-
             })
             .catch(() => {
                 message.error('系统错误，删除失败');
             })
-        this.setState({
-            filePreviewVisible: true,
-        });
     }
     filePreviewCancel = () => {
-        this.setState({filePreviewVisible: false});
+        this.setState({
+            filePreviewVisible: false,
+            previewContent: '',
+        });
     }
 
     render() {
@@ -290,22 +299,25 @@ class FolderContent extends Component {
         return (
             <div>
                 <section id="button-section">
+                    {/*文件夹目录*/}
                     <ButtonGroup style={{marginRight: 8}}>
                         {
                             this.state.folder.map((item, index) => {
                                 return (
                                     <Button key={index}
-                                            onClick={this.handleDirClick.bind(this, item, index)}>{item}</Button>
+                                            onClick={this.handleDirClick.bind(this, item, index)}
+                                    >{item}</Button>
                                 )
                             })
                         }
                     </ButtonGroup>
-
+                    {/*上传文件*/}
                     <Upload {...props} fileList={this.state.fileList} className="inline-block" style={{marginRight: 8}}>
                         <Button>
                             <Icon type="upload"/> 选择要上传的文件
                         </Button>
                     </Upload>
+                    {/*新建文件夹*/}
                     <Button icon="folder-add" style={{marginRight: 8}} onClick={this.showCreateFolderModal}>
                         新建文件夹
                     </Button>
@@ -330,21 +342,45 @@ class FolderContent extends Component {
                         <Input placeholder="输入文件夹名字" value={this.state.createFileName}
                                onChange={this.createNameChange}/>
                     </Modal>
-                    {this.state.fileClick &&
-                    <ButtonGroup style={{marginRight: 8}}>
-                        <Button icon="download" onClick={this.handleDownload}/>
-                        <Button icon="qrcode" onClick={this.showCreateQrcodeModal}/>
-                        <Button icon="eye" onClick={this.showFilePreviewModal}/>
-                        <Popconfirm placement="bottom" title="确认删除该文件？" onConfirm={this.deleteConfirm} okText="是"
-                                    cancelText="否" onClick={this.showDeleteConfirm}>
-                            <Button icon="delete"/>
-                        </Popconfirm>
+                    {/*新建文件夹结束*/}
+                    {/*文件操作Button*/}
+                    {
+                        this.state.fileClick &&
+                        <ButtonGroup style={{marginRight: 8}}>
+                            <Button icon="download" onClick={this.handleDownload}/>
+                            <Button icon="qrcode" onClick={this.showCreateQrcodeModal}/>
+                            <Modal
+                                visible={this.state.createQrcodeVisible}
+                                title="手机扫码下载"
+                                onCancel={this.createQrcodeCancel}
+                                footer={null}
+                            >
+                                <div style={{textAlign: 'center'}}>
+                                    <QRCode value={this.state.qrcodeValue} size={256} level={'H'}/>
+                                </div>
+                            </Modal>
+                            <Button icon="eye" onClick={this.showFilePreviewModal}/>
+                            <Modal
+                                visible={this.state.filePreviewVisible}
+                                title={this.state.fileName}
+                                onCancel={this.filePreviewCancel}
+                                footer={null}
+                            >
+                                <div dangerouslySetInnerHTML={{__html: this.state.previewContent}}/>
+                            </Modal>
+                            <Popconfirm placement="bottom" title="确认删除该文件？" onConfirm={this.deleteConfirm} okText="是"
+                                        cancelText="否" onClick={this.showDeleteConfirm}>
+                                <Button icon="delete"/>
+                            </Popconfirm>
 
-                    </ButtonGroup>
+                        </ButtonGroup>
                     }
                 </section>
                 <Divider/>
+                {/*文件操作list*/}
                 <Row>
+                    <Spin spinning={this.state.fileListLoading}>
+                        {/*dir*/}
                     {
                         this.state.dir.map((item, index) => {
                             return (
@@ -358,6 +394,7 @@ class FolderContent extends Component {
                             )
                         })
                     }
+                    {/*file*/}
                     {
                         this.state.file.map((item, index) => {
                             let suffix = item.substr(item.lastIndexOf(".") + 1);
@@ -394,25 +431,8 @@ class FolderContent extends Component {
                             )
                         })
                     }
+                    </Spin>
                 </Row>
-                <Modal
-                    visible={this.state.createQrcodeVisible}
-                    title="手机扫码下载"
-                    onCancel={this.createQrcodeCancel}
-                    footer={null}
-                >
-                    <div style={{textAlign: 'center'}}>
-                        <QRCode value={this.state.qrcodeValue} size={256} level={'H'}/>
-                    </div>
-                </Modal>
-                <Modal
-                    visible={this.state.filePreviewVisible}
-                    title={this.state.fileName}
-                    onCancel={this.filePreviewCancel}
-                    footer={null}
-                >
-                    <div dangerouslySetInnerHTML={{__html: this.state.previewContent}}/>
-                </Modal>
             </div>
         );
     }

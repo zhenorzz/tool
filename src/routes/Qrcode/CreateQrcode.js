@@ -40,6 +40,7 @@ class CreateQrcode extends Component {
             case 'removed':
                 this.setState({
                     fileList: [],
+                    qrcodeLogo: '',
                 })
                 break;
             default:
